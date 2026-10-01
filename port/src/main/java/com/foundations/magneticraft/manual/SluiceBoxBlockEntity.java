@@ -82,7 +82,7 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
                 BlockPos outlet = worldPosition.relative(getBlockState().getValue(SluiceBoxBlock.FACING));
                 for (int item = 0; item < input.getCount(); item++)
                     for (SluiceRecipes.Output output : recipe.outputs())
-                        if (level.random.nextFloat() < output.chance())
+                        if (level.getRandom().nextFloat() < output.chance())
                             Block.popResource(level, outlet, output.stack().copy());
             } // A removed recipe leaves its input recoverable.
             updateActive(false);
