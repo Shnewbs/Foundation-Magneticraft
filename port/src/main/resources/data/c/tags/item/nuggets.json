@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#c:nuggets/copper",
+    "#c:nuggets/lead",
+    "#c:nuggets/cobalt",
+    "#c:nuggets/tungsten",
+    "#c:nuggets/steel",
+    "#c:nuggets/aluminium",
+    "#c:nuggets/mithril",
+    "#c:nuggets/nickel",
+    "#c:nuggets/osmium",
+    "#c:nuggets/silver",
+    "#c:nuggets/tin",
+    "#c:nuggets/zinc"
+  ]
+}

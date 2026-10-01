@@ -5,6 +5,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -13,11 +16,35 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(FoundationsMagneticraft.MOD_ID)
 public final class FoundationsMagneticraft {
     public static final String MOD_ID = "magneticraft";
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredRegister<CreativeModeTab> TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
 
+    public static final DeferredBlock<Block> COPPER_ORE = BLOCKS.registerSimpleBlock("copper_ore", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> COPPER_BLOCK = BLOCKS.registerSimpleBlock("copper_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> LEAD_ORE = BLOCKS.registerSimpleBlock("lead_ore", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> LEAD_BLOCK = BLOCKS.registerSimpleBlock("lead_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> COBALT_ORE = BLOCKS.registerSimpleBlock("cobalt_ore", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> COBALT_BLOCK = BLOCKS.registerSimpleBlock("cobalt_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> TUNGSTEN_ORE = BLOCKS.registerSimpleBlock("tungsten_ore", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> TUNGSTEN_BLOCK = BLOCKS.registerSimpleBlock("tungsten_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> PYRITE_ORE = BLOCKS.registerSimpleBlock("pyrite_ore", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+    public static final DeferredBlock<Block> PYRITE_BLOCK = BLOCKS.registerSimpleBlock("pyrite_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
+
     static {
+        ITEMS.registerSimpleBlockItem("copper_ore", COPPER_ORE);
+        ITEMS.registerSimpleBlockItem("copper_block", COPPER_BLOCK);
+        ITEMS.registerSimpleBlockItem("lead_ore", LEAD_ORE);
+        ITEMS.registerSimpleBlockItem("lead_block", LEAD_BLOCK);
+        ITEMS.registerSimpleBlockItem("cobalt_ore", COBALT_ORE);
+        ITEMS.registerSimpleBlockItem("cobalt_block", COBALT_BLOCK);
+        ITEMS.registerSimpleBlockItem("tungsten_ore", TUNGSTEN_ORE);
+        ITEMS.registerSimpleBlockItem("tungsten_block", TUNGSTEN_BLOCK);
+        ITEMS.registerSimpleBlockItem("pyrite_ore", PYRITE_ORE);
+        ITEMS.registerSimpleBlockItem("pyrite_block", PYRITE_BLOCK);
+        ITEMS.registerSimpleItem("sulfur", new Item.Properties());
+
         ITEMS.registerSimpleItem("iron_light_plate", new Item.Properties());
         ITEMS.registerSimpleItem("iron_heavy_plate", new Item.Properties());
         ITEMS.registerSimpleItem("iron_chunk", new Item.Properties());
@@ -106,8 +133,9 @@ public final class FoundationsMagneticraft {
                     .build());
 
     public FoundationsMagneticraft(IEventBus modBus) {
+        BLOCKS.register(modBus);
         ITEMS.register(modBus);
         TABS.register(modBus);
-        LogUtils.getLogger().info("Foundations Magneticraft: 1.21.1 material bootstrap; machines not yet ported");
+        LogUtils.getLogger().info("Foundations Magneticraft: 1.21.1 ore and material progression; machines not yet ported");
     }
 }

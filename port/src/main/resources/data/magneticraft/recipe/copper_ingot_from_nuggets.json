@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "tag": "c:nuggets/copper"
+    }
+  },
+  "result": {
+    "id": "magneticraft:copper_ingot",
+    "count": 1
+  }
+}

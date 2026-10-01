@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "magneticraft:lead_ingot"
+    }
+  ],
+  "result": {
+    "id": "magneticraft:lead_nugget",
+    "count": 9
+  }
+}

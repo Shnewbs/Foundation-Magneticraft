@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "magneticraft:tungsten_block"
+    }
+  ],
+  "result": {
+    "id": "magneticraft:tungsten_ingot",
+    "count": 9
+  }
+}
