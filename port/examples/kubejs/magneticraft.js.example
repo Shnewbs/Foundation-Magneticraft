@@ -1,0 +1,11 @@
+// Install in kubejs/server_scripts only on Minecraft 1.21.1.
+ServerEvents.recipes(event => {
+  Magneticraft.addCrushing('example:copper_ore', '#c:ores/copper', 'magneticraft:copper_rocky_chunk', 2, 1)
+  Magneticraft.addSluice('example:copper_chunk', 'magneticraft:copper_rocky_chunk', JSON.stringify([
+    { id: 'magneticraft:copper_chunk', count: 1, chance: 1 },
+    { id: 'magneticraft:gold_dust', count: 1, chance: 0.15 }
+  ]))
+  // Magneticraft.removeCrushing('magneticraft:copper_ore')
+  // Magneticraft.removeSluice('magneticraft:sand')
+  // event.remove({ id: 'magneticraft:sluice_box' }) // vanilla crafting recipe
+})

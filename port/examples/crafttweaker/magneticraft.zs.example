@@ -1,0 +1,6 @@
+// Install in scripts only on Minecraft 1.21.1.
+import mods.magneticraft.Recipes;
+Recipes.addCrushing("example:copper_ore", "#c:ores/copper", "magneticraft:copper_rocky_chunk", 2, 1);
+Recipes.addSluice("example:copper_chunk", "magneticraft:copper_rocky_chunk", "[{\"id\":\"magneticraft:copper_chunk\",\"count\":1,\"chance\":1},{\"id\":\"magneticraft:gold_dust\",\"count\":1,\"chance\":0.15}]");
+// Recipes.removeCrushing("magneticraft:copper_ore");
+// Recipes.removeSluice("magneticraft:sand");

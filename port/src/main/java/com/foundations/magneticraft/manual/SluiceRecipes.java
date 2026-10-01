@@ -1,6 +1,8 @@
 package com.foundations.magneticraft.manual;
 
 import com.google.gson.JsonObject;
+import com.foundations.magneticraft.integration.RecipeOverrides;
+import com.foundations.magneticraft.integration.ScriptRecipeSources;
 import com.google.gson.JsonParser;
 import com.mojang.logging.LogUtils;
 import java.io.Reader;
@@ -30,7 +32,7 @@ public final class SluiceRecipes {
                 : BuiltInRegistries.ITEM.getKey(stack.getItem()).toString().equals(ingredient);
         }
     }
-    private record Snapshot(Map<ResourceLocation, Resource> resources, List<Recipe> recipes) {}
+    private record Snapshot(Map<ResourceLocation, Resource> resources, long scriptRevision, List<Recipe> recipes) {}
     private static final Map<ResourceManager, Snapshot> CACHE = new WeakHashMap<>();
 
     public static Recipe find(Level level, ItemStack input) {
@@ -38,12 +40,13 @@ public final class SluiceRecipes {
         ResourceManager manager = level.getServer().getResourceManager();
         Map<ResourceLocation, Resource> resources = manager.listResources(
             "magneticraft/sluice", id -> id.getPath().endsWith(".json"));
+        long scriptRevision = RecipeOverrides.revision();
         Snapshot snapshot = CACHE.get(manager);
-        if (snapshot == null || !snapshot.resources().equals(resources)) {
+        if (snapshot == null || !snapshot.resources().equals(resources) || snapshot.scriptRevision() != scriptRevision) {
             List<Recipe> recipes = new ArrayList<>();
-            resources.entrySet().stream().sorted(Comparator.comparing(e -> e.getKey().toString())).forEach(entry -> {
-                try (Reader reader = entry.getValue().openAsReader()) {
-                    JsonObject data = JsonParser.parseReader(reader).getAsJsonObject();
+            ScriptRecipeSources.merge(resources, "sluice").entrySet().stream().sorted(Comparator.comparing(e -> e.getKey().toString())).forEach(entry -> {
+                try {
+                    JsonObject data = JsonParser.parseString(entry.getValue()).getAsJsonObject();
                     if (data.has("enabled") && !data.get("enabled").getAsBoolean()) return;
                     String ingredient = data.get("ingredient").getAsString();
                     ResourceLocation.parse(ingredient.startsWith("#") ? ingredient.substring(1) : ingredient);
@@ -68,7 +71,7 @@ public final class SluiceRecipes {
             });
             // Specific item recipes override broad compatibility tags.
             recipes.sort(Comparator.comparing(recipe -> recipe.ingredient().startsWith("#")));
-            snapshot = new Snapshot(resources, List.copyOf(recipes));
+            snapshot = new Snapshot(resources, scriptRevision, List.copyOf(recipes));
             CACHE.put(manager, snapshot);
         }
         for (Recipe recipe : snapshot.recipes()) if (recipe.matches(input)) return recipe;

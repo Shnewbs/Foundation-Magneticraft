@@ -6,7 +6,7 @@ Inventory and partial work persist and sync from the server. Breaking/replacing 
 
 34 source-derived crushing recipes cover ores (shared c:ores tags, including optional compatibility metals), pyrite, storage-block plates, steel plates, bones/rods, skulls and stone variants. Original limestone recipes await limestone registration. Steel has no production chain yet, so its hammer is primarily for creative/integration use. Weapon combat properties are pending.
 
-Datapack extension: place JSON at data/<namespace>/magneticraft/crushing/<name>.json. Format: ingredient is an item ID or #item-tag; result contains id and count; mining_level is 0–4. Set enabled:false to disable an existing recipe by overriding its same path. Exact items precede tag matches; ties use resource ID order. Resources refresh on /reload; invalid recipes are logged and skipped. This dedicated loader is not yet integrated with the vanilla recipe registry, JEI or KubeJS. This is a temporary bridge while their APIs are migrated.
+Datapack extension: place JSON at data/<namespace>/magneticraft/crushing/<name>.json. Format: ingredient is an item ID or #item-tag; result contains id and count; mining_level is 0–4. Set enabled:false to disable an existing recipe by overriding its same path. Exact items precede tag matches; ties use resource ID order. Resources refresh on /reload; invalid recipes are logged and skipped. The dedicated loader supports the optional 1.21.1 KubeJS/CraftTweaker adapters described in SCRIPTING.md. Vanilla machine recipe registration and JEI remain pending. This is a temporary bridge while their APIs are migrated.
 
 ## Sluice box
 
@@ -16,6 +16,12 @@ Place with a clear adjacent block in the facing direction; both halves form one 
 
 The original body/water geometry, UVs and textures are converted to native models with automated reconstruction checks. Ten fill models update in eight-tick steps. General fluid-container support, continuous renderer animation, world water interactions and gameplay verification remain pending. Insertion/retrieval is restricted to idle batches to keep consumption deterministic. Pistons cannot move the pair; only the main half has block loot.
 
-Next: box/fabricator inventory and the power-system migration.
+## Box
+
+The source-derived box has 27 persistent slots, a vanilla three-row inventory menu with shift-click support, comparator output and the target's item automation capability. The original box texture and stick/plank crafting recipe are migrated. Pistons cannot move it. Placement, break drops, full inventories, hopper/mod transfer, multiplayer and save/reload need gameplay verification.
+
+The sluice, mesh and box now have recipe-book unlock advancements. Obtain a mesh to unlock the sluice recipe, an iron light plate for mesh, or a stick for the box. The sluice uses two planks, two sticks, one mesh and three smooth stone slabs.
+
+Next: fabricator's nine-slot buffer, nine ghost inputs, adjacent inventory search, server-authoritative craft requests and remaining-item handling, then power migration. Source audit is complete; fabricator is not yet registered. See SCRIPTING.md for the new optional integrations.
 
 Validation: compile/package checks and pure Java threshold/reset/restore regression checks. Client/world/server gameplay validation remains pending. Check insertion, all hammer tiers, full inventories, breaking, restart, chunk reload and datapack reload in a test world before production use.

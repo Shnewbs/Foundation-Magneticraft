@@ -1,0 +1,1 @@
+com.foundations.magneticraft.integration.kubejs.MagneticraftKubeJSPlugin kubejs

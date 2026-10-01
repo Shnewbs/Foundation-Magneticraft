@@ -49,3 +49,19 @@ tasks.register('verifySluice', JavaExec) {
     mainClass = 'com.foundations.magneticraft.manual.SluiceCycleTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifySluice') }
+
+tasks.register('verifyScriptRecipes', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.integration.RecipeOverridesTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifyScriptRecipes') }
+
+repositories {
+    maven { url = 'https://maven.latvian.dev/releases' }
+    maven { url = 'https://maven.blamejared.com' }
+}
+dependencies {
+    compileOnly 'dev.latvian.mods:kubejs-neoforge:2101.7.2-build.377'
+    compileOnly 'com.blamejared.crafttweaker:CraftTweaker-neoforge-1.21.1:21.0.38'
+}
