@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/silver",
+  "result": {
+    "id": "magneticraft:silver_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

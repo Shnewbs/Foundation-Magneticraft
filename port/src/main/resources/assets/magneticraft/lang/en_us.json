@@ -87,5 +87,12 @@
   "block.magneticraft.tungsten_ore": "Tungsten Ore",
   "block.magneticraft.tungsten_block": "Tungsten Block",
   "block.magneticraft.pyrite_ore": "Pyrite Ore",
-  "block.magneticraft.pyrite_block": "Pyrite Block"
+  "block.magneticraft.pyrite_block": "Pyrite Block",
+  "block.magneticraft.crushing_table": "Crushing Table",
+  "item.magneticraft.stone_hammer": "Stone Hammer",
+  "item.magneticraft.iron_hammer": "Iron Hammer",
+  "item.magneticraft.steel_hammer": "Steel Hammer",
+  "message.magneticraft.hammer_tier": "This input needs a stronger hammer.",
+  "message.magneticraft.table_empty": "Crushing table: empty",
+  "message.magneticraft.table_contents": "Crushing table: %s x %s (%s/%s)"
 }

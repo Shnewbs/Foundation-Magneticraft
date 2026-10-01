@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/aluminium",
+  "result": {
+    "id": "magneticraft:aluminium_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

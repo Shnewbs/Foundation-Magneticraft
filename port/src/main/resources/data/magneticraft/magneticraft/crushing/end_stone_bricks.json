@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:end_stone_bricks",
+  "result": {
+    "id": "minecraft:end_stone",
+    "count": 1
+  },
+  "mining_level": 0
+}

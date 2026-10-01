@@ -1,0 +1,8 @@
+{
+  "ingredient": "magneticraft:pyrite_ore",
+  "result": {
+    "id": "magneticraft:sulfur",
+    "count": 2
+  },
+  "mining_level": 1
+}

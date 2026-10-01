@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/copper",
+  "result": {
+    "id": "magneticraft:copper_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

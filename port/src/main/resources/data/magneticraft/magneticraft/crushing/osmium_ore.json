@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/osmium",
+  "result": {
+    "id": "magneticraft:osmium_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

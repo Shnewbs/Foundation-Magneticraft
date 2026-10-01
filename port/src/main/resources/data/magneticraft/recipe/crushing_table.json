@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "CDC"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "B": {
+      "tag": "c:rods/wooden"
+    },
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "D": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "id": "magneticraft:crushing_table",
+    "count": 1
+  }
+}

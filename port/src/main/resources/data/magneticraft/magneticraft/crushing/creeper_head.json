@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:creeper_head",
+  "result": {
+    "id": "minecraft:gunpowder",
+    "count": 8
+  },
+  "mining_level": 0
+}

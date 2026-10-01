@@ -1,0 +1,8 @@
+{
+  "ingredient": "magneticraft:lead_block",
+  "result": {
+    "id": "magneticraft:lead_light_plate",
+    "count": 5
+  },
+  "mining_level": 1
+}

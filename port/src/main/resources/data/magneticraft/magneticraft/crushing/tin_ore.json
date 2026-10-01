@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/tin",
+  "result": {
+    "id": "magneticraft:tin_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

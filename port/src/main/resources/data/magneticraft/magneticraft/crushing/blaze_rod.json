@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:blaze_rod",
+  "result": {
+    "id": "minecraft:blaze_powder",
+    "count": 5
+  },
+  "mining_level": 0
+}

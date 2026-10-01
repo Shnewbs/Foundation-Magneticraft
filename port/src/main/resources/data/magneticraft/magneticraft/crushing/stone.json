@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:stone",
+  "result": {
+    "id": "minecraft:cobblestone",
+    "count": 1
+  },
+  "mining_level": 0
+}

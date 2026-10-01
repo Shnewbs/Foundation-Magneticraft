@@ -1,0 +1,8 @@
+{
+  "ingredient": "magneticraft:copper_block",
+  "result": {
+    "id": "magneticraft:copper_light_plate",
+    "count": 5
+  },
+  "mining_level": 1
+}

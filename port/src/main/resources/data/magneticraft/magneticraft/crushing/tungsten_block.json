@@ -1,0 +1,8 @@
+{
+  "ingredient": "magneticraft:tungsten_block",
+  "result": {
+    "id": "magneticraft:tungsten_light_plate",
+    "count": 5
+  },
+  "mining_level": 2
+}

@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:zombie_head",
+  "result": {
+    "id": "minecraft:rotten_flesh",
+    "count": 4
+  },
+  "mining_level": 0
+}

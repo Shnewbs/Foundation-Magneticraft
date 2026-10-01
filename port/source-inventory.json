@@ -72,12 +72,20 @@
       ]
     },
     "manual_machines": {
-      "status": "pending",
+      "status": "partial",
       "source_files": [
         "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/Blocks.kt",
         "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/Containers.kt",
         "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/TileEntities.kt",
         "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/TileRenderers.kt"
+      ],
+      "implemented": [
+        "crushing_table"
+      ],
+      "pending": [
+        "sluice_box",
+        "box",
+        "fabricator"
       ]
     },
     "multiblock_parts": {

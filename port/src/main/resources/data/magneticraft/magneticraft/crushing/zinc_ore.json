@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/zinc",
+  "result": {
+    "id": "magneticraft:zinc_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

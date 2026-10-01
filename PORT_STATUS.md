@@ -1,9 +1,9 @@
 # Port status: 1.21.1
 
-Version: 0.0.1a.R2 (early alpha)
+Version: 0.0.1a.R2 (next revision in development)
 
-Implemented: 77 metallic items; sulfur item; five ores; five storage blocks; source-derived furnace/compression recipes; original textures; mining/compatibility tags; four data-driven ore distributions.
+Implemented: 77 metallic items; sulfur; five ores and storage blocks; original material textures; furnace/compression recipes; mining/compatibility tags; four ore distributions; manual crushing table and three hammer items; 34 dedicated datapack crushing recipes. See port/MANUAL_PROCESSING.md for controls and remaining parity work.
 
-Validation: resource graph and progression checks plus GitHub compile/package checks. No client/world/dedicated-server runtime testing is claimed.
+Validation: resource/progression checks passed locally. Cross-version compile/package and crushing progress regression checks run in GitHub Actions. No client/world/dedicated-server gameplay testing is claimed.
 
-Known limits: manual machines, power, fluid processing, oil reservoirs, limestone generation, computers, integrations, and sulfur fuel behavior are unported. Worldgen uses modern vanilla veins with the original default Y ranges. Existing 1.12 worlds are unsupported.
+Known limits: sluice box, box/fabricator, power, fluid processing, oil reservoirs, limestone, computers, integrations and sulfur fuel behavior remain unported. Crushing table item display, source sounds/particles, optional blaze fire and hammer combat attributes are pending. Steel production is unported. Worldgen uses modern vanilla veins with original default Y ranges. Existing 1.12 worlds are unsupported.

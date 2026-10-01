@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:prismarine_bricks",
+  "result": {
+    "id": "minecraft:prismarine",
+    "count": 1
+  },
+  "mining_level": 0
+}
