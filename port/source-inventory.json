@@ -130,9 +130,18 @@
       ]
     },
     "ores": {
-      "status": "pending",
+      "status": "partial",
       "source_files": [
         "src/main/kotlin/com/cout970/magneticraft/features/ores/Blocks.kt"
+      ],
+      "implemented": [
+        "five ores and storage blocks",
+        "four source-derived default ore distributions"
+      ],
+      "pending": [
+        "limestone generation",
+        "oil reservoirs",
+        "runtime worldgen validation"
       ]
     }
   },
@@ -155,7 +164,7 @@
     "wood_gas"
   ],
   "materials": {
-    "status": "registered; build and runtime verification pending",
+    "status": "registered; compile/package checks passed; runtime validation pending",
     "variant_count": 77
   },
   "assets": {
