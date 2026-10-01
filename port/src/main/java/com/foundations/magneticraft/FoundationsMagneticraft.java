@@ -36,7 +36,7 @@ public final class FoundationsMagneticraft {
     public static final DeferredBlock<Block> PYRITE_ORE = BLOCKS.registerSimpleBlock("pyrite_ore", properties -> properties.strength(1.5F, 10.0F).requiresCorrectToolForDrops());
     public static final DeferredBlock<Block> PYRITE_BLOCK = BLOCKS.registerSimpleBlock("pyrite_block", properties -> properties.strength(1.5F, 10.0F).requiresCorrectToolForDrops());
 
-    public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.registerBlock("crushing_table", CrushingTableBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.BLOCK));
+    public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.registerBlock("crushing_table", CrushingTableBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MOD_ID);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTableBlockEntity>> CRUSHING_TABLE_ENTITY =

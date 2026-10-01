@@ -61,7 +61,7 @@ public final class CrushingTableBlockEntity extends BlockEntity {
                     else if (input.is(BlockTags.NEEDS_STONE_TOOL)) requiredTier = Math.max(requiredTier, 1);
                 }
                 if (hammer.miningLevel() < requiredTier) {
-                    player.displayClientMessage(Component.translatable("message.magneticraft.hammer_tier"), true);
+                    player.sendOverlayMessage(Component.translatable("message.magneticraft.hammer_tier"));
                     return;
                 }
                 if (!player.getAbilities().instabuild)
@@ -78,15 +78,15 @@ public final class CrushingTableBlockEntity extends BlockEntity {
                 // Inventory.add mutates the copy, including partial transfers. Keep only the remainder.
                 ItemStack remainder = stored.copy();
                 player.getInventory().add(remainder);
+                if (remainder.getCount() != stored.getCount()) progress.reset();
                 stored = remainder.isEmpty() ? ItemStack.EMPTY : remainder;
-                progress.reset();
                 changed();
             }
         }
-        player.displayClientMessage(stored.isEmpty()
+        player.sendOverlayMessage(stored.isEmpty()
             ? Component.translatable("message.magneticraft.table_empty")
             : Component.translatable("message.magneticraft.table_contents",
-                stored.getCount(), stored.getHoverName(), progress.damage(), CrushingProgress.REQUIRED), true);
+                stored.getCount(), stored.getHoverName(), progress.damage(), CrushingProgress.REQUIRED));
     }
     private void insert(Player player, ItemStack candidate) {
         stored = candidate.copyWithCount(1);
