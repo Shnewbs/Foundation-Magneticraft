@@ -2,6 +2,11 @@ package com.foundations.magneticraft;
 
 import com.mojang.logging.LogUtils;
 import com.foundations.magneticraft.manual.CrushingTableBlock;
+import com.foundations.magneticraft.manual.BoxBlock;
+import com.foundations.magneticraft.manual.BoxBlockEntity;
+import com.foundations.magneticraft.integration.RecipeOverrides;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import com.foundations.magneticraft.manual.SluiceBoxBlock;
 import com.foundations.magneticraft.manual.SluiceBoxBlockEntity;
 import com.foundations.magneticraft.manual.CrushingTableBlockEntity;
@@ -40,6 +45,7 @@ public final class FoundationsMagneticraft {
 
     public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.registerBlock("crushing_table", CrushingTableBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredBlock<SluiceBoxBlock> SLUICE_BOX = BLOCKS.registerBlock("sluice_box", SluiceBoxBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
+    public static final DeferredBlock<BoxBlock> BOX = BLOCKS.registerBlock("box", BoxBlock::new, properties -> properties.strength(1.5F).sound(net.minecraft.world.level.block.SoundType.WOOD).pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MOD_ID);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTableBlockEntity>> CRUSHING_TABLE_ENTITY =
@@ -48,7 +54,11 @@ public final class FoundationsMagneticraft {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SluiceBoxBlockEntity>> SLUICE_BOX_ENTITY =
             BLOCK_ENTITIES.register("sluice_box", () -> new BlockEntityType<>(SluiceBoxBlockEntity::new, false, SLUICE_BOX.get()));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BoxBlockEntity>> BOX_ENTITY =
+            BLOCK_ENTITIES.register("box", () -> new BlockEntityType<>(BoxBlockEntity::new, false, BOX.get()));
+
     static {
+        ITEMS.registerSimpleBlockItem("box", BOX);
         ITEMS.registerSimpleBlockItem("sluice_box", SLUICE_BOX);
         ITEMS.registerSimpleItem("mesh", properties -> properties);
         ITEMS.registerSimpleBlockItem("crushing_table", CRUSHING_TABLE);
@@ -155,6 +165,10 @@ public final class FoundationsMagneticraft {
                     .build());
 
     public FoundationsMagneticraft(IEventBus modBus) {
+        modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->
+            event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.Item.BLOCK,
+                BOX_ENTITY.get(), (box, side) -> net.neoforged.neoforge.transfer.item.VanillaContainerWrapper.of(box)));
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> RecipeOverrides.clearAll());
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         TABS.register(modBus);

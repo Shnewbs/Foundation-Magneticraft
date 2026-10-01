@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "key": {
+    "A": "#c:rods/wooden",
+    "B": "#minecraft:planks"
+  },
+  "result": {
+    "id": "magneticraft:box",
+    "count": 1
+  }
+}
