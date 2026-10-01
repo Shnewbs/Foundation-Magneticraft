@@ -98,5 +98,11 @@
   "block.magneticraft.sluice_box": "Sluice Box",
   "item.magneticraft.mesh": "Mesh",
   "message.magneticraft.sluice_contents": "Sluice: %s items, %s/%s ticks remaining",
-  "block.magneticraft.box": "Box"
+  "block.magneticraft.box": "Box",
+  "block.magneticraft.fabricator": "Fabricator",
+  "gui.magneticraft.fabricator.craft": "Craft",
+  "gui.magneticraft.fabricator.clear": "Clear",
+  "gui.magneticraft.fabricator.pattern": "Pattern",
+  "gui.magneticraft.fabricator.storage": "Storage",
+  "gui.magneticraft.fabricator.hint": "Left: copy held item; right: clear"
 }

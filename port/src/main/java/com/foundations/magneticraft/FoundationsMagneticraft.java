@@ -1,6 +1,11 @@
 package com.foundations.magneticraft;
 
 import com.mojang.logging.LogUtils;
+import com.foundations.magneticraft.manual.FabricatorBlock;
+import com.foundations.magneticraft.manual.FabricatorBlockEntity;
+import com.foundations.magneticraft.manual.FabricatorMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.flag.FeatureFlags;
 import com.foundations.magneticraft.manual.CrushingTableBlock;
 import com.foundations.magneticraft.manual.BoxBlock;
 import com.foundations.magneticraft.manual.BoxBlockEntity;
@@ -46,6 +51,7 @@ public final class FoundationsMagneticraft {
     public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.registerBlock("crushing_table", CrushingTableBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredBlock<SluiceBoxBlock> SLUICE_BOX = BLOCKS.registerBlock("sluice_box", SluiceBoxBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredBlock<BoxBlock> BOX = BLOCKS.registerBlock("box", BoxBlock::new, properties -> properties.strength(1.5F).sound(net.minecraft.world.level.block.SoundType.WOOD).pushReaction(PushReaction.IMMOVEABLE));
+    public static final DeferredBlock<FabricatorBlock> FABRICATOR = BLOCKS.registerBlock("fabricator", FabricatorBlock::new, properties -> properties.strength(1.5F).sound(net.minecraft.world.level.block.SoundType.WOOD).pushReaction(PushReaction.IMMOVEABLE));
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MOD_ID);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTableBlockEntity>> CRUSHING_TABLE_ENTITY =
@@ -57,7 +63,14 @@ public final class FoundationsMagneticraft {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BoxBlockEntity>> BOX_ENTITY =
             BLOCK_ENTITIES.register("box", () -> new BlockEntityType<>(BoxBlockEntity::new, false, BOX.get()));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FabricatorBlockEntity>> FABRICATOR_ENTITY =
+            BLOCK_ENTITIES.register("fabricator", () -> new BlockEntityType<>(FabricatorBlockEntity::new, false, FABRICATOR.get()));
+    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, MOD_ID);
+    public static final DeferredHolder<MenuType<?>, MenuType<FabricatorMenu>> FABRICATOR_MENU =
+            MENUS.register("fabricator", () -> new MenuType<>(FabricatorMenu::new, FeatureFlags.VANILLA_SET));
+
     static {
+        ITEMS.registerSimpleBlockItem("fabricator", FABRICATOR);
         ITEMS.registerSimpleBlockItem("box", BOX);
         ITEMS.registerSimpleBlockItem("sluice_box", SLUICE_BOX);
         ITEMS.registerSimpleItem("mesh", properties -> properties);
@@ -168,6 +181,10 @@ public final class FoundationsMagneticraft {
         modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->
             event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.Item.BLOCK,
                 BOX_ENTITY.get(), (box, side) -> net.neoforged.neoforge.transfer.item.VanillaContainerWrapper.of(box)));
+        modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->
+            event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.Item.BLOCK,
+                FABRICATOR_ENTITY.get(), (box, side) -> net.neoforged.neoforge.transfer.item.VanillaContainerWrapper.of(box)));
+        MENUS.register(modBus);
         NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> RecipeOverrides.clearAll());
         BLOCKS.register(modBus);
         ITEMS.register(modBus);

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "AB",
+    "CD"
+  ],
+  "key": {
+    "A": "#c:ingots/copper",
+    "B": "#c:ingots/iron",
+    "C": "minecraft:redstone",
+    "D": "minecraft:crafting_table"
+  },
+  "result": {
+    "id": "magneticraft:fabricator",
+    "count": 1
+  }
+}
