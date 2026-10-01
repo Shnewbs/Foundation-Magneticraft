@@ -1,0 +1,25 @@
+{
+  "ingredient": "magneticraft:gold_rocky_chunk",
+  "outputs": [
+    {
+      "id": "magneticraft:gold_chunk",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "id": "magneticraft:copper_dust",
+      "count": 1,
+      "chance": 0.15
+    },
+    {
+      "id": "magneticraft:silver_dust",
+      "count": 1,
+      "chance": 0.15
+    },
+    {
+      "id": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.15
+    }
+  ]
+}

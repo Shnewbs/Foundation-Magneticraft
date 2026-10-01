@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "BBB"
+  ],
+  "key": {
+    "A": "#c:plates/iron",
+    "B": "#c:strings"
+  },
+  "result": {
+    "id": "magneticraft:mesh",
+    "count": 1
+  }
+}

@@ -94,5 +94,8 @@
   "item.magneticraft.steel_hammer": "Steel Hammer",
   "message.magneticraft.hammer_tier": "This input needs a stronger hammer.",
   "message.magneticraft.table_empty": "Crushing table: empty",
-  "message.magneticraft.table_contents": "Crushing table: %s x %s (%s/%s)"
+  "message.magneticraft.table_contents": "Crushing table: %s x %s (%s/%s)",
+  "block.magneticraft.sluice_box": "Sluice Box",
+  "item.magneticraft.mesh": "Mesh",
+  "message.magneticraft.sluice_contents": "Sluice: %s items, %s/%s ticks remaining"
 }

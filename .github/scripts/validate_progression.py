@@ -3,6 +3,8 @@ import argparse
 import json
 import pathlib
 import re
+import subprocess
+import sys
 
 ORES = ("copper", "lead", "cobalt", "tungsten", "pyrite")
 GENERATED = {"copper": (11, 8, 10, 69), "lead": (10, 8, 2, 79),
@@ -15,7 +17,7 @@ def validate(files, target):
     registered = set(re.findall(r'registerSimple(?:Item|BlockItem|Block)\("([^"]+)"', main))
     blocks = {f"{metal}_{kind}" for metal in ORES for kind in ("ore", "block")}
     assert blocks <= registered
-    assert len(registered) == 92, (target, len(registered))
+    assert len(registered) == 94, (target, len(registered))
     resources = {p[len(root):]: json.loads(v) for p, v in files.items()
                  if p.startswith(root) and p.endswith(".json")}
 
@@ -42,7 +44,7 @@ def validate(files, target):
             item(identifier)
 
     recipes = {p: v for p, v in resources.items() if p.startswith("data/magneticraft/recipe/")}
-    assert len(recipes) == 67
+    assert len(recipes) == 69
     for path, recipe in recipes.items():
         assert recipe["type"] in ("minecraft:smelting", "minecraft:crafting_shaped",
                                    "minecraft:crafting_shapeless"), path
@@ -119,7 +121,37 @@ def validate(files, target):
     model = resource("assets/magneticraft/models/block/crushing_table.json")
     assert len(model["elements"]) == 3
     assert model["elements"][2]["to"] == [16, 14, 16]
-    print(f"{target}: 92 registrations, 67 recipes, mining/loot/models/worldgen checks passed")
+    sluice = {p: v for p, v in resources.items() if p.startswith("data/magneticraft/magneticraft/sluice/")}
+    assert len(sluice) == 16
+    for path, recipe in sluice.items():
+        item(recipe["ingredient"])
+        assert recipe["outputs"]
+        for output in recipe["outputs"]:
+            item(output["id"])
+            assert 1 <= output["count"] <= 64 and 0 <= output["chance"] <= 1
+    galena = resource("data/magneticraft/magneticraft/sluice/galena.json")["outputs"]
+    assert [o["id"] for o in galena[:2]] == ["magneticraft:lead_chunk", "magneticraft:silver_chunk"]
+    assert all(o["chance"] == 1 for o in galena[:2])
+    sand = resource("data/magneticraft/magneticraft/sluice/sand.json")["outputs"]
+    assert len(sand) == 9
+    assert [o["chance"] for o in sand] == [0.01 / 2**i for i in range(9)]
+    state = resource("assets/magneticraft/blockstates/sluice_box.json")
+    assert len(state["multipart"]) == 48
+    assert all(part["when"]["center"] == "true" for part in state["multipart"])
+    for fill in range(1, 11):
+        assert len(resource(f"assets/magneticraft/models/block/sluice_box_gravel_{fill}.json")["elements"]) == 6
+    water = resource("assets/magneticraft/models/block/sluice_box_water.json")
+    assert len(water["elements"]) == 22
+    if modern:
+        assert all(t["force_translucent"] for t in water["textures"].values())
+    else:
+        assert water["render_type"] == "minecraft:translucent"
+    loot = resource("data/magneticraft/loot_table/blocks/sluice_box.json")["pools"][0]
+    if modern:
+        assert loot["condition"]["terms"][1] == {"type": "minecraft:match_block", "blocks": "magneticraft:sluice_box", "state": {"center": "true"}}
+    else:
+        assert loot["conditions"][1]["properties"] == {"center": "true"}
+    print(f"{target}: 94 registrations, 69 recipes, mining/loot/models/worldgen checks passed")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -134,6 +166,7 @@ def main():
         files = {str(p).replace("\\", "/"): p.read_text(encoding="utf-8")
                  for p in pathlib.Path("port").rglob("*") if p.suffix in (".java", ".json")}
         validate(files, props["minecraft_version"])
+        subprocess.run([sys.executable, ".github/scripts/convert_sluice_models.py", "--check"], check=True)
 
 if __name__ == "__main__":
     main()

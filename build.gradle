@@ -42,3 +42,10 @@ tasks.register('verifyCrushing', JavaExec) {
     mainClass = 'com.foundations.magneticraft.manual.CrushingProgressTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyCrushing') }
+
+tasks.register('verifySluice', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.manual.SluiceCycleTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifySluice') }

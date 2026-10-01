@@ -1,0 +1,15 @@
+{
+  "ingredient": "minecraft:gravel",
+  "outputs": [
+    {
+      "id": "minecraft:flint",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "id": "minecraft:flint",
+      "count": 1,
+      "chance": 0.15
+    }
+  ]
+}
