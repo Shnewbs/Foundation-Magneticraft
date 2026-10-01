@@ -18,7 +18,7 @@ public final class BoxBlock extends Block implements EntityBlock {
         return InteractionResult.SUCCESS;
     }
     @Override protected boolean hasAnalogOutputSignal(BlockState state) { return true; }
-    @Override protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    @Override protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, net.minecraft.core.Direction direction) {
         return net.minecraft.world.inventory.AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
     }
 }
