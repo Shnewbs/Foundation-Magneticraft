@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": "#c:ingots/copper"
+  },
+  "result": {
+    "id": "magneticraft:copper_block",
+    "count": 1
+  }
+}

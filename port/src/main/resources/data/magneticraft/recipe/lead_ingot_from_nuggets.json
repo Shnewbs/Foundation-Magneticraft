@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": "#c:nuggets/lead"
+  },
+  "result": {
+    "id": "magneticraft:lead_ingot",
+    "count": 1
+  }
+}

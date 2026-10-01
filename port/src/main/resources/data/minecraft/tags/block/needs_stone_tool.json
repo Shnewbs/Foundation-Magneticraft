@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "magneticraft:copper_ore",
+    "magneticraft:lead_ore",
+    "magneticraft:pyrite_ore"
+  ]
+}

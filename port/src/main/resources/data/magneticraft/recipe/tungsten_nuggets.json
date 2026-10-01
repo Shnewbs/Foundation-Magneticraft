@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "magneticraft:tungsten_ingot"
+  ],
+  "result": {
+    "id": "magneticraft:tungsten_nugget",
+    "count": 9
+  }
+}

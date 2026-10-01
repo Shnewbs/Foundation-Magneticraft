@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "magneticraft:copper_ore",
+    "magneticraft:copper_block",
+    "magneticraft:lead_ore",
+    "magneticraft:lead_block",
+    "magneticraft:cobalt_ore",
+    "magneticraft:cobalt_block",
+    "magneticraft:tungsten_ore",
+    "magneticraft:tungsten_block",
+    "magneticraft:pyrite_ore",
+    "magneticraft:pyrite_block"
+  ]
+}

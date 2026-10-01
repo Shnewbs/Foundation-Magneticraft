@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "magneticraft:cobalt_ore",
+    "magneticraft:tungsten_ore"
+  ]
+}

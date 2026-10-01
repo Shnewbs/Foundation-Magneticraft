@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "magneticraft:copper_block"
+  ],
+  "result": {
+    "id": "magneticraft:copper_ingot",
+    "count": 9
+  }
+}

@@ -1,13 +1,9 @@
 # Port status: 26.3
 
-Version: 0.0.1a (unreleased)
+Version: 0.0.1a.R2 (early alpha)
 
-- Modern NeoForge build and entry point added.
-- 77 metallic variants converted from metadata into explicit item IDs with original textures.
-- Original namespace preserved: magneticraft.
-- Legacy sources retained as reference; excluded from runtime packaging.
-- Original recipes, blocks, machines, power, worldgen, and integrations remain unported.
-- Minecraft 26.4 support is preparation only.
-- GitHub Actions compilation and JAR packaging passed for the initial bootstrap commit.
-- Material validation: 77 unique IDs, 77 matching original textures, 77 models; 26.3 also has 77 modern item definitions.
-- Client and dedicated-server runtime verification still pending. No release should be published yet.
+Implemented: 77 metallic items; sulfur item; five ores; five storage blocks; source-derived furnace/compression recipes; original textures; mining/compatibility tags; four data-driven ore distributions.
+
+Validation: resource graph and progression checks plus GitHub compile/package checks. No client/world/dedicated-server runtime testing is claimed.
+
+Known limits: manual machines, power, fluid processing, oil reservoirs, limestone generation, computers, integrations, and sulfur fuel behavior are unported. Worldgen uses modern vanilla veins with the original default Y ranges. Existing 1.12 worlds are unsupported.

@@ -76,5 +76,16 @@
   "item.magneticraft.zinc_nugget": "Zinc Nugget",
   "item.magneticraft.zinc_chunk": "Zinc Chunk",
   "item.magneticraft.zinc_dust": "Zinc Dust",
-  "item.magneticraft.zinc_rocky_chunk": "Zinc Rocky Chunk"
+  "item.magneticraft.zinc_rocky_chunk": "Zinc Rocky Chunk",
+  "item.magneticraft.sulfur": "Sulfur",
+  "block.magneticraft.copper_ore": "Copper Ore",
+  "block.magneticraft.copper_block": "Copper Block",
+  "block.magneticraft.lead_ore": "Lead Ore",
+  "block.magneticraft.lead_block": "Lead Block",
+  "block.magneticraft.cobalt_ore": "Cobalt Ore",
+  "block.magneticraft.cobalt_block": "Cobalt Block",
+  "block.magneticraft.tungsten_ore": "Tungsten Ore",
+  "block.magneticraft.tungsten_block": "Tungsten Block",
+  "block.magneticraft.pyrite_ore": "Pyrite Ore",
+  "block.magneticraft.pyrite_block": "Pyrite Block"
 }

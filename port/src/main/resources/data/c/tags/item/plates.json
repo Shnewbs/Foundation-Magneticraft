@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#c:plates/iron",
+    "#c:plates/gold",
+    "#c:plates/copper",
+    "#c:plates/lead",
+    "#c:plates/tungsten",
+    "#c:plates/steel"
+  ]
+}

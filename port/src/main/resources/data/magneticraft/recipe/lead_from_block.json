@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "magneticraft:lead_block"
+  ],
+  "result": {
+    "id": "magneticraft:lead_ingot",
+    "count": 9
+  }
+}
