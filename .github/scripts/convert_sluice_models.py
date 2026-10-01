@@ -91,6 +91,8 @@ def build():
         model = models["sluice_box_water"]
         model.pop("render_type")
         model["textures"] = {key: {"sprite": value, "force_translucent": True} for key, value in model["textures"].items()}
+    else:
+        models["sluice_box"]["render_type"] = "minecraft:cutout"
     return models
 
 def main():
