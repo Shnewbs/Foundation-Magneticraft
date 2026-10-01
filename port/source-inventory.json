@@ -82,11 +82,12 @@
       "implemented": [
         "crushing_table",
         "sluice_box (water bucket; two blocks; independent source yields; stepped model fill)",
-        "box (27 slots; persistent inventory; vanilla chest menu; automation capability)"
+        "box (27 slots; persistent inventory; vanilla chest menu; automation capability)",
+        "fabricator (nine ghost slots; nine-slot buffer; neighbor inventories; server craft and remainder handling)"
       ],
       "pending": [
-        "fabricator",
-        "sluice fluid-container compatibility and client/world/server gameplay validation"
+        "sluice fluid-container compatibility and client/world/server gameplay validation",
+        "fabricator client/server gameplay and cross-mod inventory validation"
       ]
     },
     "multiblock_parts": {

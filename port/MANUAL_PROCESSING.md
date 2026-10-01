@@ -25,3 +25,11 @@ The sluice, mesh and box now have recipe-book unlock advancements. Obtain a mesh
 Next: fabricator's nine-slot buffer, nine ghost inputs, adjacent inventory search, server-authoritative craft requests and remaining-item handling, then power migration. Source audit is complete; fabricator is not yet registered. See SCRIPTING.md for the new optional integrations.
 
 Validation: compile/package checks and pure Java threshold/reset/restore regression checks. Client/world/server gameplay validation remains pending. Check insertion, all hammer tiers, full inventories, breaking, restart, chunk reload and datapack reload in a test world before production use.
+
+## Fabricator
+
+Craft one from copper ingot, iron ingot, redstone and a crafting table in a two-by-two grid (copper/iron above redstone/table). Open the block; left-click one of the nine pattern slots with a held item to copy a one-item ghost. Right-click clears that ghost. Clear removes the whole pattern. Ghosts never consume, store or dispense real items.
+
+Put ingredients in the nine storage slots or an adjacent inventory. Craft performs one server-validated craft and puts output in the storage buffer, dropping overflow above the block. Container remainders return to their ingredient source, with buffer/drop fallback. Shift-click moves real inventory stacks only. Neighbors in unloaded chunks are ignored.
+
+This is manual crafting, without a timer or redstone auto-crafting. Templates and real storage persist independently. Hoppers access only real storage; breaking the block drops real storage, never ghosts or preview output. The screen uses native target menu APIs. Live client/server, multiplayer and third-party inventory compatibility checks are pending.

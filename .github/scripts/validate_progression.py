@@ -17,7 +17,7 @@ def validate(files, target):
     registered = set(re.findall(r'registerSimple(?:Item|BlockItem|Block)\("([^"]+)"', main))
     blocks = {f"{metal}_{kind}" for metal in ORES for kind in ("ore", "block")}
     assert blocks <= registered
-    assert len(registered) == 95, (target, len(registered))
+    assert len(registered) == 96, (target, len(registered))
     resources = {p[len(root):]: json.loads(v) for p, v in files.items()
                  if p.startswith(root) and p.endswith(".json")}
 
@@ -44,7 +44,7 @@ def validate(files, target):
             item(identifier)
 
     recipes = {p: v for p, v in resources.items() if p.startswith("data/magneticraft/recipe/")}
-    assert len(recipes) == 70
+    assert len(recipes) == 71
     for path, recipe in recipes.items():
         assert recipe["type"] in ("minecraft:smelting", "minecraft:crafting_shaped",
                                    "minecraft:crafting_shapeless"), path
@@ -154,12 +154,18 @@ def validate(files, target):
     craft = resource("data/magneticraft/recipe/sluice_box.json")
     assert craft["pattern"] == ["AB ", "CAB", "DDD"]
     assert craft["result"]["id"] == "magneticraft:sluice_box"
-    for name in ("sluice_box", "mesh", "box"):
+    for name in ("sluice_box", "mesh", "box", "fabricator"):
         unlock = resource(f"data/magneticraft/advancement/recipes/misc/{name}.json")
         assert unlock["rewards"]["recipes"] == [f"magneticraft:{name}"]
     assert resource("data/magneticraft/recipe/box.json")["pattern"] == ["ABA", "BAB", "ABA"]
+    fabricator = resource("data/magneticraft/recipe/fabricator.json")
+    assert fabricator["pattern"] == ["AB", "CD"]
+    assert fabricator["result"]["id"] == "magneticraft:fabricator"
+    cube = resource("assets/magneticraft/models/block/fabricator.json")
+    assert cube["textures"]["up"] == "magneticraft:block/fabricator_top"
+    assert cube["textures"]["down"] == "magneticraft:block/fabricator_bottom"
     assert "beforeScriptsLoaded" in files.get("port/src/main/java/com/foundations/magneticraft/integration/kubejs/MagneticraftKubeJSPlugin.java", "") or modern
-    print(f"{target}: 95 registrations, 70 recipes, mining/loot/models/worldgen checks passed")
+    print(f"{target}: 96 registrations, 71 recipes, mining/loot/models/worldgen checks passed")
 
 def main():
     parser = argparse.ArgumentParser()

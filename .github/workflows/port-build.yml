@@ -20,7 +20,6 @@ jobs:
         with:
           gradle-version: '9.2.1'
       - run: python .github/scripts/validate_progression.py
-      - run: gradle --no-daemon inspectFabricatorApi
       - run: gradle --no-daemon build
       - uses: actions/upload-artifact@v4
         with:
