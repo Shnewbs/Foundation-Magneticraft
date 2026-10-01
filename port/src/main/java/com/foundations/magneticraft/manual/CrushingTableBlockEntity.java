@@ -78,8 +78,8 @@ public final class CrushingTableBlockEntity extends BlockEntity {
                 // Inventory.add mutates the copy, including partial transfers. Keep only the remainder.
                 ItemStack remainder = stored.copy();
                 player.getInventory().add(remainder);
+                if (remainder.getCount() != stored.getCount()) progress.reset();
                 stored = remainder.isEmpty() ? ItemStack.EMPTY : remainder;
-                progress.reset();
                 changed();
             }
         }
