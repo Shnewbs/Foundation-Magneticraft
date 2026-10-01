@@ -1,0 +1,77 @@
+name: Paired releases
+on:
+  push:
+    branches: ['1.21.1', '26.3']
+    paths: ['gradle.properties']
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish after both builds pass (leave off for validation only)
+        type: boolean
+        default: false
+concurrency:
+  group: magneticraft-paired-release
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.plan.outputs.ready }}
+      matrix: ${{ steps.plan.outputs.matrix }}
+      version: ${{ steps.plan.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m unittest discover -s .github/scripts -p 'test_*.py'
+      - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: python .github/scripts/releases.py prepare
+  build:
+    needs: prepare
+    if: needs.prepare.outputs.ready == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.2.1'
+      - run: gradle --no-daemon build
+      - env:
+          MC_TARGET: ${{ matrix.target }}
+          SOURCE_SHA: ${{ matrix.sha }}
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: python .github/scripts/releases.py package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.target }}
+          path: release/*
+          if-no-files-found: error
+  publish:
+    if: github.event_name == 'push' || inputs.publish
+    needs: [prepare, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: artifacts
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: python .github/scripts/releases.py publish
