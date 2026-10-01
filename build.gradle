@@ -27,3 +27,11 @@ tasks.named('processResources', ProcessResources) {
 }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 tasks.named('jar', Jar) { from('LICENSE') }
+
+sourceSets.test.java.setSrcDirs(['port/src/test/java'])
+tasks.register('verifyCrushing', JavaExec) {
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.manual.CrushingProgressTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifyCrushing') }

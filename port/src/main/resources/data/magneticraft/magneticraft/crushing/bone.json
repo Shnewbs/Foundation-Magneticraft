@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:bone",
+  "result": {
+    "id": "minecraft:bone_meal",
+    "count": 4
+  },
+  "mining_level": 0
+}

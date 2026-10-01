@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/mithril",
+  "result": {
+    "id": "magneticraft:mithril_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

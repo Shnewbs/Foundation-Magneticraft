@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA ",
+    "ABA",
+    " B "
+  ],
+  "key": {
+    "A": "#c:ingots/steel",
+    "B": "#c:rods/wooden"
+  },
+  "result": {
+    "id": "magneticraft:steel_hammer",
+    "count": 1
+  }
+}

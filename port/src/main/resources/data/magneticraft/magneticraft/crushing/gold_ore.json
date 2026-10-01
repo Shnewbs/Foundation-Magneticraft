@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/gold",
+  "result": {
+    "id": "magneticraft:gold_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 2
+}

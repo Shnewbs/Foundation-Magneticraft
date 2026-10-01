@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ores/lead",
+  "result": {
+    "id": "magneticraft:lead_rocky_chunk",
+    "count": 1
+  },
+  "mining_level": 1
+}

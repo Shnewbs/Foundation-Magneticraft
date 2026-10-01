@@ -1,0 +1,8 @@
+{
+  "ingredient": "minecraft:mossy_stone_bricks",
+  "result": {
+    "id": "minecraft:mossy_cobblestone",
+    "count": 1
+  },
+  "mining_level": 0
+}

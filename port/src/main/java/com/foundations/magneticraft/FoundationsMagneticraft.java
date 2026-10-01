@@ -1,6 +1,10 @@
 package com.foundations.magneticraft;
 
 import com.mojang.logging.LogUtils;
+import com.foundations.magneticraft.manual.CrushingTableBlock;
+import com.foundations.magneticraft.manual.CrushingTableBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,7 +36,17 @@ public final class FoundationsMagneticraft {
     public static final DeferredBlock<Block> PYRITE_ORE = BLOCKS.registerSimpleBlock("pyrite_ore", properties -> properties.strength(1.5F, 10.0F).requiresCorrectToolForDrops());
     public static final DeferredBlock<Block> PYRITE_BLOCK = BLOCKS.registerSimpleBlock("pyrite_block", properties -> properties.strength(1.5F, 10.0F).requiresCorrectToolForDrops());
 
+    public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.registerBlock("crushing_table", CrushingTableBlock::new, properties -> properties.strength(1.5F).noOcclusion().pushReaction(PushReaction.BLOCK));
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
+            DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MOD_ID);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTableBlockEntity>> CRUSHING_TABLE_ENTITY =
+            BLOCK_ENTITIES.register("crushing_table", () -> new BlockEntityType<>(CrushingTableBlockEntity::new, false, CRUSHING_TABLE.get()));
+
     static {
+        ITEMS.registerSimpleBlockItem("crushing_table", CRUSHING_TABLE);
+        ITEMS.registerSimpleItem("stone_hammer", properties -> properties.durability(130));
+        ITEMS.registerSimpleItem("iron_hammer", properties -> properties.durability(250));
+        ITEMS.registerSimpleItem("steel_hammer", properties -> properties.durability(750));
         ITEMS.registerSimpleBlockItem("copper_ore", COPPER_ORE);
         ITEMS.registerSimpleBlockItem("copper_block", COPPER_BLOCK);
         ITEMS.registerSimpleBlockItem("lead_ore", LEAD_ORE);
@@ -136,6 +150,7 @@ public final class FoundationsMagneticraft {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         TABS.register(modBus);
-        LogUtils.getLogger().info("Foundations Magneticraft: 26.3 ore and material progression; machines not yet ported");
+        BLOCK_ENTITIES.register(modBus);
+        LogUtils.getLogger().info("Foundations Magneticraft: 26.3 ore progression and manual crushing table");
     }
 }

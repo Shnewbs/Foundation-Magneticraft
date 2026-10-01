@@ -1,0 +1,8 @@
+{
+  "ingredient": "#c:ingots/steel",
+  "result": {
+    "id": "magneticraft:steel_light_plate",
+    "count": 1
+  },
+  "mining_level": 0
+}

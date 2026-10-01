@@ -15,7 +15,7 @@ def validate(files, target):
     registered = set(re.findall(r'registerSimple(?:Item|BlockItem|Block)\("([^"]+)"', main))
     blocks = {f"{metal}_{kind}" for metal in ORES for kind in ("ore", "block")}
     assert blocks <= registered
-    assert len(registered) == 88, (target, len(registered))
+    assert len(registered) == 92, (target, len(registered))
     resources = {p[len(root):]: json.loads(v) for p, v in files.items()
                  if p.startswith(root) and p.endswith(".json")}
 
@@ -36,12 +36,13 @@ def validate(files, target):
             identifier = value.get("item", "#" + value.get("tag", ""))
         if identifier.startswith("#"):
             namespace, path = identifier[1:].split(":")
-            resource(f"data/{namespace}/tags/item/{path}.json")
+            if namespace != "minecraft":
+                resource(f"data/{namespace}/tags/item/{path}.json")
         else:
             item(identifier)
 
     recipes = {p: v for p, v in resources.items() if p.startswith("data/magneticraft/recipe/")}
-    assert len(recipes) == 63
+    assert len(recipes) == 67
     for path, recipe in recipes.items():
         assert recipe["type"] in ("minecraft:smelting", "minecraft:crafting_shaped",
                                    "minecraft:crafting_shapeless"), path
@@ -95,7 +96,30 @@ def validate(files, target):
         modifier = resource(f"data/magneticraft/neoforge/biome_modifier/{metal}_ore.json")
         assert modifier["biomes"] == "#minecraft:is_overworld"
     assert not any("worldgen/" in path and "cobalt" in path for path in resources)
-    print(f"{target}: 88 registrations, 63 recipes, mining/loot/models/worldgen checks passed")
+    crushing = {p: v for p, v in resources.items() if p.startswith("data/magneticraft/magneticraft/crushing/")}
+    assert len(crushing) == 34, len(crushing)
+    for path, recipe in crushing.items():
+        item(recipe["result"]["id"])
+        assert 1 <= recipe["result"]["count"] <= 64
+        assert 0 <= recipe["mining_level"] <= 4
+        value = recipe["ingredient"]
+        if value.startswith("#"):
+            ns, tag = value[1:].split(":")
+            resource(f"data/{ns}/tags/item/{tag}.json")
+        else:
+            item(value)
+    assert resource("data/magneticraft/magneticraft/crushing/pyrite_ore.json")["result"]["count"] == 2
+    for metal in ("iron", "gold", "copper", "lead", "tungsten"):
+        assert resource(f"data/magneticraft/magneticraft/crushing/{metal}_block.json")["result"]["count"] == 5
+    for tool, durability in (("stone", 130), ("iron", 250), ("steel", 750)):
+        assert f'.durability({durability})' in main
+        resource(f"assets/magneticraft/models/item/{tool}_hammer.json")
+        if modern:
+            resource(f"assets/magneticraft/items/{tool}_hammer.json")
+    model = resource("assets/magneticraft/models/block/crushing_table.json")
+    assert len(model["elements"]) == 3
+    assert model["elements"][2]["to"] == [16, 14, 16]
+    print(f"{target}: 92 registrations, 67 recipes, mining/loot/models/worldgen checks passed")
 
 def main():
     parser = argparse.ArgumentParser()
