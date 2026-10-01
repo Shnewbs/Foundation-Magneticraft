@@ -1,0 +1,157 @@
+{
+  "source_commit": "4108ca9bb332d11965c30e0c592b310d0858f251",
+  "review": "Source-path inventory; feature behavior still requires source/runtime audit",
+  "features": {
+    "automatic_machines": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/automatic_machines/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/automatic_machines/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/automatic_machines/TileRenders.kt"
+      ]
+    },
+    "computers": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/computers/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/computers/Containers.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/computers/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/computers/TileRenderers.kt"
+      ]
+    },
+    "decoration": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/decoration/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/decoration/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/decoration/TileRenderers.kt"
+      ]
+    },
+    "electric_conductors": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_conductors/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_conductors/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_conductors/TileRenderers.kt"
+      ]
+    },
+    "electric_machines": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_machines/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_machines/TileEntitys.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/electric_machines/TileRenderers.kt"
+      ]
+    },
+    "fluid_machines": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/fluid_machines/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/fluid_machines/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/fluid_machines/TileRenderers.kt"
+      ]
+    },
+    "heat_machines": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/heat_machines/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/heat_machines/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/heat_machines/TileRenderers.kt"
+      ]
+    },
+    "items": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/items/ComputerItems.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/CraftingItems.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/ElectricItems.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/EnumMetal.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/MetallicItems.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/ToolItems.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/items/Upgrades.kt"
+      ]
+    },
+    "manual_machines": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/Containers.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/TileEntities.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/TileRenderers.kt"
+      ]
+    },
+    "multiblock_parts": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblock_parts/Blocks.kt"
+      ]
+    },
+    "multiblocks": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/Blocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/Containers.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockBigCombustionChamber.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockBigElectricFurnace.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockBigSteamBoiler.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockContainer.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockGrinder.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockHydraulicPress.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockOilHeater.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockPumpjack.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockRefinery.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockShelvingUnit.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSieve.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSolarMirror.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSolarPanel.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSolarTower.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSteamEngine.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/structures/MultiblockSteamTurbine.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Generators.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Machines.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Multiblocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Oil.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Solar.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tileentities/Storage.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Generators.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Machines.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Multiblocks.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Oil.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Solar.kt",
+        "src/main/kotlin/com/cout970/magneticraft/features/multiblocks/tilerenderers/Storage.kt"
+      ]
+    },
+    "ores": {
+      "status": "pending",
+      "source_files": [
+        "src/main/kotlin/com/cout970/magneticraft/features/ores/Blocks.kt"
+      ]
+    }
+  },
+  "fluid_ids": [
+    "steam",
+    "oil",
+    "hot_crude",
+    "lpg",
+    "light_oil",
+    "heavy_oil",
+    "natural_gas",
+    "naphtha",
+    "plastic",
+    "gasoline",
+    "kerosene",
+    "diesel",
+    "lubricant",
+    "fuel",
+    "oil_residue",
+    "wood_gas"
+  ],
+  "materials": {
+    "status": "registered; build and runtime verification pending",
+    "variant_count": 77
+  },
+  "assets": {
+    "textures": 374,
+    "models": 271
+  }
+}
