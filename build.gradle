@@ -28,10 +28,17 @@ tasks.named('processResources', ProcessResources) {
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 tasks.named('jar', Jar) { from('LICENSE') }
 
-sourceSets.test.java.setSrcDirs(['port/src/test/java'])
+// Standalone assertion program; use a dedicated source set rather than a JUnit test task.
+sourceSets {
+    crushingChecks {
+        java.setSrcDirs(['port/src/test/java'])
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
 tasks.register('verifyCrushing', JavaExec) {
-    dependsOn tasks.named('testClasses')
-    classpath = sourceSets.test.runtimeClasspath
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
     mainClass = 'com.foundations.magneticraft.manual.CrushingProgressTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyCrushing') }
