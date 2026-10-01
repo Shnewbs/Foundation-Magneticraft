@@ -63,14 +63,3 @@ tasks.register('verifyFabricator', JavaExec) {
     mainClass = 'com.foundations.magneticraft.manual.FabricatorPlannerTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyFabricator') }
-
-def fabricatorApiClasspath = sourceSets.main.compileClasspath
-tasks.register('inspectFabricatorRuntimeApi', Exec) {
-    dependsOn 'createMinecraftArtifacts'
-    doFirst {
-        commandLine 'javap', '-classpath', fabricatorApiClasspath.asPath,
-            'net.minecraft.world.inventory.ContainerInput',
-            'net.minecraft.world.inventory.Slot',
-            'net.minecraft.client.multiplayer.MultiPlayerGameMode'
-    }
-}
