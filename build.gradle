@@ -56,3 +56,11 @@ tasks.register('verifyScriptRecipes', JavaExec) {
     mainClass = 'com.foundations.magneticraft.integration.RecipeOverridesTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyScriptRecipes') }
+
+tasks.register('inspectFabricatorApi', Exec) {
+    dependsOn tasks.named('createMinecraftArtifacts')
+    ignoreExitValue = true
+    doFirst {
+        commandLine 'javap', '-classpath', sourceSets.main.compileClasspath.asPath, 'net.minecraft.world.item.crafting.CraftingRecipe', 'net.minecraft.world.item.crafting.CraftingInput', 'net.minecraft.world.item.crafting.Recipe', 'net.minecraft.world.item.crafting.RecipeManager', 'net.minecraft.world.inventory.AbstractContainerMenu', 'net.minecraft.client.gui.screens.inventory.AbstractContainerScreen', 'net.minecraft.client.gui.screens.Screen', 'net.minecraft.client.gui.components.Button', 'net.minecraft.client.gui.GuiGraphicsExtractor', 'net.minecraft.client.gui.GuiGraphics', 'net.minecraft.world.Container', 'net.minecraft.world.entity.player.Inventory', 'net.minecraft.world.inventory.MenuType'
+    }
+}
