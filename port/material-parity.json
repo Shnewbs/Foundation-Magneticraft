@@ -1,0 +1,546 @@
+{
+  "source": "4108ca9bb332d11965c30e0c592b310d0858f251",
+  "target": "1.21.1",
+  "scope": "MetallicItems and EnumMetal; registration/assets only, recipes and machine behavior pending",
+  "items": [
+    {
+      "id": "iron_light_plate",
+      "metal": "iron",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/iron.png"
+    },
+    {
+      "id": "iron_heavy_plate",
+      "metal": "iron",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/iron.png"
+    },
+    {
+      "id": "iron_chunk",
+      "metal": "iron",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/iron.png"
+    },
+    {
+      "id": "iron_dust",
+      "metal": "iron",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/iron.png"
+    },
+    {
+      "id": "iron_rocky_chunk",
+      "metal": "iron",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/iron.png"
+    },
+    {
+      "id": "gold_light_plate",
+      "metal": "gold",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/gold.png"
+    },
+    {
+      "id": "gold_heavy_plate",
+      "metal": "gold",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/gold.png"
+    },
+    {
+      "id": "gold_chunk",
+      "metal": "gold",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/gold.png"
+    },
+    {
+      "id": "gold_dust",
+      "metal": "gold",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/gold.png"
+    },
+    {
+      "id": "gold_rocky_chunk",
+      "metal": "gold",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/gold.png"
+    },
+    {
+      "id": "copper_ingot",
+      "metal": "copper",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/copper.png"
+    },
+    {
+      "id": "copper_nugget",
+      "metal": "copper",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/copper.png"
+    },
+    {
+      "id": "copper_light_plate",
+      "metal": "copper",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/copper.png"
+    },
+    {
+      "id": "copper_heavy_plate",
+      "metal": "copper",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/copper.png"
+    },
+    {
+      "id": "copper_chunk",
+      "metal": "copper",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/copper.png"
+    },
+    {
+      "id": "copper_dust",
+      "metal": "copper",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/copper.png"
+    },
+    {
+      "id": "copper_rocky_chunk",
+      "metal": "copper",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/copper.png"
+    },
+    {
+      "id": "lead_ingot",
+      "metal": "lead",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/lead.png"
+    },
+    {
+      "id": "lead_nugget",
+      "metal": "lead",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/lead.png"
+    },
+    {
+      "id": "lead_light_plate",
+      "metal": "lead",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/lead.png"
+    },
+    {
+      "id": "lead_heavy_plate",
+      "metal": "lead",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/lead.png"
+    },
+    {
+      "id": "lead_chunk",
+      "metal": "lead",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/lead.png"
+    },
+    {
+      "id": "lead_dust",
+      "metal": "lead",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/lead.png"
+    },
+    {
+      "id": "lead_rocky_chunk",
+      "metal": "lead",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/lead.png"
+    },
+    {
+      "id": "cobalt_ingot",
+      "metal": "cobalt",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/cobalt.png"
+    },
+    {
+      "id": "cobalt_nugget",
+      "metal": "cobalt",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/cobalt.png"
+    },
+    {
+      "id": "cobalt_chunk",
+      "metal": "cobalt",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/cobalt.png"
+    },
+    {
+      "id": "cobalt_dust",
+      "metal": "cobalt",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/cobalt.png"
+    },
+    {
+      "id": "cobalt_rocky_chunk",
+      "metal": "cobalt",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/cobalt.png"
+    },
+    {
+      "id": "tungsten_ingot",
+      "metal": "tungsten",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/tungsten.png"
+    },
+    {
+      "id": "tungsten_nugget",
+      "metal": "tungsten",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/tungsten.png"
+    },
+    {
+      "id": "tungsten_light_plate",
+      "metal": "tungsten",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/tungsten.png"
+    },
+    {
+      "id": "tungsten_heavy_plate",
+      "metal": "tungsten",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/tungsten.png"
+    },
+    {
+      "id": "tungsten_chunk",
+      "metal": "tungsten",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/tungsten.png"
+    },
+    {
+      "id": "tungsten_dust",
+      "metal": "tungsten",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/tungsten.png"
+    },
+    {
+      "id": "tungsten_rocky_chunk",
+      "metal": "tungsten",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/tungsten.png"
+    },
+    {
+      "id": "steel_ingot",
+      "metal": "steel",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/steel.png"
+    },
+    {
+      "id": "steel_nugget",
+      "metal": "steel",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/steel.png"
+    },
+    {
+      "id": "steel_light_plate",
+      "metal": "steel",
+      "form": "light_plate",
+      "folder": "lightplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/light_plate/steel.png"
+    },
+    {
+      "id": "steel_heavy_plate",
+      "metal": "steel",
+      "form": "heavy_plate",
+      "folder": "heavyplates",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/heavy_plate/steel.png"
+    },
+    {
+      "id": "steel_dust",
+      "metal": "steel",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/steel.png"
+    },
+    {
+      "id": "aluminium_ingot",
+      "metal": "aluminium",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/aluminium.png"
+    },
+    {
+      "id": "aluminium_nugget",
+      "metal": "aluminium",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/aluminium.png"
+    },
+    {
+      "id": "aluminium_chunk",
+      "metal": "aluminium",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/aluminium.png"
+    },
+    {
+      "id": "aluminium_dust",
+      "metal": "aluminium",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/aluminium.png"
+    },
+    {
+      "id": "aluminium_rocky_chunk",
+      "metal": "aluminium",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/aluminium.png"
+    },
+    {
+      "id": "galena_rocky_chunk",
+      "metal": "galena",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/galena.png"
+    },
+    {
+      "id": "mithril_ingot",
+      "metal": "mithril",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/mithril.png"
+    },
+    {
+      "id": "mithril_nugget",
+      "metal": "mithril",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/mithril.png"
+    },
+    {
+      "id": "mithril_chunk",
+      "metal": "mithril",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/mithril.png"
+    },
+    {
+      "id": "mithril_dust",
+      "metal": "mithril",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/mithril.png"
+    },
+    {
+      "id": "mithril_rocky_chunk",
+      "metal": "mithril",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/mithril.png"
+    },
+    {
+      "id": "nickel_ingot",
+      "metal": "nickel",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/nickel.png"
+    },
+    {
+      "id": "nickel_nugget",
+      "metal": "nickel",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/nickel.png"
+    },
+    {
+      "id": "nickel_chunk",
+      "metal": "nickel",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/nickel.png"
+    },
+    {
+      "id": "nickel_dust",
+      "metal": "nickel",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/nickel.png"
+    },
+    {
+      "id": "nickel_rocky_chunk",
+      "metal": "nickel",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/nickel.png"
+    },
+    {
+      "id": "osmium_ingot",
+      "metal": "osmium",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/osmium.png"
+    },
+    {
+      "id": "osmium_nugget",
+      "metal": "osmium",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/osmium.png"
+    },
+    {
+      "id": "osmium_chunk",
+      "metal": "osmium",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/osmium.png"
+    },
+    {
+      "id": "osmium_dust",
+      "metal": "osmium",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/osmium.png"
+    },
+    {
+      "id": "osmium_rocky_chunk",
+      "metal": "osmium",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/osmium.png"
+    },
+    {
+      "id": "silver_ingot",
+      "metal": "silver",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/silver.png"
+    },
+    {
+      "id": "silver_nugget",
+      "metal": "silver",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/silver.png"
+    },
+    {
+      "id": "silver_chunk",
+      "metal": "silver",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/silver.png"
+    },
+    {
+      "id": "silver_dust",
+      "metal": "silver",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/silver.png"
+    },
+    {
+      "id": "silver_rocky_chunk",
+      "metal": "silver",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/silver.png"
+    },
+    {
+      "id": "tin_ingot",
+      "metal": "tin",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/tin.png"
+    },
+    {
+      "id": "tin_nugget",
+      "metal": "tin",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/tin.png"
+    },
+    {
+      "id": "tin_chunk",
+      "metal": "tin",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/tin.png"
+    },
+    {
+      "id": "tin_dust",
+      "metal": "tin",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/tin.png"
+    },
+    {
+      "id": "tin_rocky_chunk",
+      "metal": "tin",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/tin.png"
+    },
+    {
+      "id": "zinc_ingot",
+      "metal": "zinc",
+      "form": "ingot",
+      "folder": "ingots",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/ingots/zinc.png"
+    },
+    {
+      "id": "zinc_nugget",
+      "metal": "zinc",
+      "form": "nugget",
+      "folder": "nuggets",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/nugget/zinc.png"
+    },
+    {
+      "id": "zinc_chunk",
+      "metal": "zinc",
+      "form": "chunk",
+      "folder": "chunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/chunk/zinc.png"
+    },
+    {
+      "id": "zinc_dust",
+      "metal": "zinc",
+      "form": "dust",
+      "folder": "dusts",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/dust/zinc.png"
+    },
+    {
+      "id": "zinc_rocky_chunk",
+      "metal": "zinc",
+      "form": "rocky_chunk",
+      "folder": "rockychunks",
+      "source_texture": "src/main/resources/assets/magneticraft/textures/items/rocky_chunk/zinc.png"
+    }
+  ]
+}

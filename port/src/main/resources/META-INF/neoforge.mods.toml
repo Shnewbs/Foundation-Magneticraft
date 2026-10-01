@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="GPL-2.0"
+[[mods]]
+modId="magneticraft"
+version="${mod_version}"
+displayName="Foundations Magneticraft"
+authors="Magneticraft Team; Foundations / Shnewbs"
+displayURL="https://github.com/Shnewbs/Foundation-Magneticraft"
+description="Concurrent modern port of Magneticraft. Early material bootstrap; machines are not yet available."
+[[dependencies.magneticraft]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.magneticraft]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
