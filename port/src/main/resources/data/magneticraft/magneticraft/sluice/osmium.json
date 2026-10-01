@@ -1,0 +1,25 @@
+{
+  "ingredient": "magneticraft:osmium_rocky_chunk",
+  "outputs": [
+    {
+      "id": "magneticraft:osmium_chunk",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "id": "magneticraft:mithril_dust",
+      "count": 1,
+      "chance": 0.15
+    },
+    {
+      "id": "magneticraft:nickel_dust",
+      "count": 1,
+      "chance": 0.15
+    },
+    {
+      "id": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.15
+    }
+  ]
+}

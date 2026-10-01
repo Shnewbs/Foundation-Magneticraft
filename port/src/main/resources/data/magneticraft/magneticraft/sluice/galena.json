@@ -1,0 +1,20 @@
+{
+  "ingredient": "magneticraft:galena_rocky_chunk",
+  "outputs": [
+    {
+      "id": "magneticraft:lead_chunk",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "id": "magneticraft:silver_chunk",
+      "count": 1,
+      "chance": 1
+    },
+    {
+      "id": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.15
+    }
+  ]
+}

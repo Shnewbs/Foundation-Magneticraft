@@ -80,12 +80,13 @@
         "src/main/kotlin/com/cout970/magneticraft/features/manual_machines/TileRenderers.kt"
       ],
       "implemented": [
-        "crushing_table"
+        "crushing_table",
+        "sluice_box (water bucket; two blocks; independent source yields; stepped model fill)"
       ],
       "pending": [
-        "sluice_box",
         "box",
-        "fabricator"
+        "fabricator",
+        "sluice fluid-container compatibility and client/world/server gameplay validation"
       ]
     },
     "multiblock_parts": {

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AB ",
+    "CAB",
+    "DDD"
+  ],
+  "key": {
+    "A": {
+      "tag": "minecraft:planks"
+    },
+    "B": {
+      "tag": "c:rods/wooden"
+    },
+    "C": {
+      "item": "magneticraft:mesh"
+    },
+    "D": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "result": {
+    "id": "magneticraft:sluice_box",
+    "count": 1
+  }
+}

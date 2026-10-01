@@ -1,0 +1,528 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "center": "true",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "active": "true"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_water",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "1"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_1",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "2"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_2",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "3"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_3",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "4"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_4",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "5"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_5",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "6"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_6",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "7"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_7",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "8"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_8",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "9"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_9",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "south",
+        "fill": "10"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_10",
+        "y": 0
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "active": "true"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_water",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "1"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "2"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "3"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "4"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "5"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_5",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "6"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_6",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "7"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_7",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "8"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_8",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "9"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_9",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "west",
+        "fill": "10"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_10",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "active": "true"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_water",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "1"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "2"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_2",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "3"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "4"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_4",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "5"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_5",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "6"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_6",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "7"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_7",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "8"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_8",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "9"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_9",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "north",
+        "fill": "10"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_10",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "active": "true"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_water",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "1"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "2"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_2",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "3"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_3",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "4"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_4",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "5"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_5",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "6"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_6",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "7"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_7",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "8"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_8",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "9"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_9",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "center": "true",
+        "facing": "east",
+        "fill": "10"
+      },
+      "apply": {
+        "model": "magneticraft:block/sluice_box_gravel_10",
+        "y": 270
+      }
+    }
+  ]
+}

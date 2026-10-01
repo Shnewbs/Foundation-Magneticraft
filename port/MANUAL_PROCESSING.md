@@ -8,6 +8,14 @@ Inventory and partial work persist and sync from the server. Breaking/replacing 
 
 Datapack extension: place JSON at data/<namespace>/magneticraft/crushing/<name>.json. Format: ingredient is an item ID or #item-tag; result contains id and count; mining_level is 0–4. Set enabled:false to disable an existing recipe by overriding its same path. Exact items precede tag matches; ties use resource ID order. Resources refresh on /reload; invalid recipes are logged and skipped. This dedicated loader is not yet integrated with the vanilla recipe registry, JEI or KubeJS. This is a temporary bridge while their APIs are migrated.
 
-Next: sluice box two-block placement, batch water processing and downstream activation (80 ticks per cycle, capacity 10, chain delay 20 ticks); then box/fabricator inventory and the power-system migration.
+## Sluice box
+
+Place with a clear adjacent block in the facing direction; both halves form one machine. Main-hand interaction on either half inserts up to 10 matching recipe inputs while idle. An empty hand retrieves remaining input while idle. A water bucket starts an 80-tick batch and returns an empty bucket in survival; creative keeps its bucket. Outputs drop at the outlet after processing. A box two blocks forward and one block lower activates after 20 ticks if its chunk is loaded; busy boxes cannot restart. Empty boxes can pass activation downstream. Input and exact cycle/chain timing persist.
+
+16 source-derived recipes cover 14 rocky chunks, gravel and sand. Every input rolls each output independently, preserving guaranteed chunks and byproduct probabilities, including guaranteed lead and silver from galena. Recipe removal during a cycle keeps inputs recoverable. Datapacks use data/<namespace>/magneticraft/sluice/<name>.json with ingredient as an item ID or #item-tag, outputs as [{id,count,chance}], and optional enabled:false. Lookup/reload rules match crushing.
+
+The original body/water geometry, UVs and textures are converted to native models with automated reconstruction checks. Ten fill models update in eight-tick steps. General fluid-container support, continuous renderer animation, world water interactions and gameplay verification remain pending. Insertion/retrieval is restricted to idle batches to keep consumption deterministic. Pistons cannot move the pair; only the main half has block loot.
+
+Next: box/fabricator inventory and the power-system migration.
 
 Validation: compile/package checks and pure Java threshold/reset/restore regression checks. Client/world/server gameplay validation remains pending. Check insertion, all hammer tiers, full inventories, breaking, restart, chunk reload and datapack reload in a test world before production use.

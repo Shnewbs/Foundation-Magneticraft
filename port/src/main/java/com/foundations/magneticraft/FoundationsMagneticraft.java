@@ -2,6 +2,8 @@ package com.foundations.magneticraft;
 
 import com.mojang.logging.LogUtils;
 import com.foundations.magneticraft.manual.CrushingTableBlock;
+import com.foundations.magneticraft.manual.SluiceBoxBlock;
+import com.foundations.magneticraft.manual.SluiceBoxBlockEntity;
 import com.foundations.magneticraft.manual.CrushingTableBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.PushReaction;
@@ -37,12 +39,18 @@ public final class FoundationsMagneticraft {
     public static final DeferredBlock<Block> PYRITE_BLOCK = BLOCKS.registerSimpleBlock("pyrite_block", BlockBehaviour.Properties.of().strength(1.5F, 10.0F).requiresCorrectToolForDrops());
 
     public static final DeferredBlock<CrushingTableBlock> CRUSHING_TABLE = BLOCKS.register("crushing_table", () -> new CrushingTableBlock(BlockBehaviour.Properties.of().strength(1.5F).noOcclusion().pushReaction(PushReaction.BLOCK)));
+    public static final DeferredBlock<SluiceBoxBlock> SLUICE_BOX = BLOCKS.register("sluice_box", () -> new SluiceBoxBlock(BlockBehaviour.Properties.of().strength(1.5F).noOcclusion().pushReaction(PushReaction.BLOCK)));
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MOD_ID);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrushingTableBlockEntity>> CRUSHING_TABLE_ENTITY =
             BLOCK_ENTITIES.register("crushing_table", () -> BlockEntityType.Builder.of(CrushingTableBlockEntity::new, CRUSHING_TABLE.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SluiceBoxBlockEntity>> SLUICE_BOX_ENTITY =
+            BLOCK_ENTITIES.register("sluice_box", () -> BlockEntityType.Builder.of(SluiceBoxBlockEntity::new, SLUICE_BOX.get()).build(null));
+
     static {
+        ITEMS.registerSimpleBlockItem("sluice_box", SLUICE_BOX);
+        ITEMS.registerSimpleItem("mesh", new Item.Properties());
         ITEMS.registerSimpleBlockItem("crushing_table", CRUSHING_TABLE);
         ITEMS.registerSimpleItem("stone_hammer", new Item.Properties().durability(130));
         ITEMS.registerSimpleItem("iron_hammer", new Item.Properties().durability(250));
