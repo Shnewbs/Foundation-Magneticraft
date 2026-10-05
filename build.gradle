@@ -72,3 +72,31 @@ tasks.register('verifyFabricator', JavaExec) {
     mainClass = 'com.foundations.magneticraft.manual.FabricatorPlannerTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyFabricator') }
+
+tasks.register('verifyRecipeCache', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.integration.GenerationCacheTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifyRecipeCache') }
+
+tasks.register('verifyWaterBudget', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.manual.WaterBudgetTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifyWaterBudget') }
+
+repositories { maven { url = 'https://api.modrinth.com/maven' }; maven { url = 'https://maven.blamejared.com' } }
+dependencies {
+    compileOnly 'mezz.jei:jei-1.21.1-common-api:19.57.0.451'
+    compileOnly 'mezz.jei:jei-1.21.1-neoforge-api:19.57.0.451'
+    compileOnly 'maven.modrinth:jade:15.10.6+neoforge'
+    crushingChecksImplementation 'com.google.code.gson:gson:2.11.0'
+}
+tasks.register('verifyRecipeCatalog', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.integration.ProcessingCatalogTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifyRecipeCatalog') }

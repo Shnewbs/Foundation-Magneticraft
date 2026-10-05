@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class SluiceBoxBlockEntity extends BlockEntity {
+    private int water;
+    private final SluiceAutomation automation = new SluiceAutomation(this);
     private ItemStack stored = ItemStack.EMPTY;
     private final SluiceCycle cycle = new SluiceCycle();
     public SluiceBoxBlockEntity(BlockPos pos, BlockState state) {
@@ -24,9 +26,8 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
     }
     public void interact(Player player, ItemStack held) {
         if (level == null || level.isClientSide()) return;
-        if (held.is(Items.WATER_BUCKET) && !cycle.active()) {
-            if (activate() && !player.getAbilities().instabuild)
-                player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.BUCKET));
+        if (!cycle.active() && SluiceWaterContainer.consume(player)) {
+            activate();
         } else if (!cycle.active() && held.isEmpty()) {
             ItemStack remainder = stored.copy();
             player.getInventory().add(remainder);
@@ -45,10 +46,46 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
         player.displayClientMessage(Component.translatable("message.magneticraft.sluice_contents",
             stored.getCount(), cycle.remaining(), SluiceCycle.DURATION), true);
     }
+    private boolean hasNext() {
+        BlockPos next = worldPosition.relative(getBlockState().getValue(SluiceBoxBlock.FACING), 2).below();
+        return level.hasChunkAt(next) && level.getBlockEntity(next) instanceof SluiceBoxBlockEntity;
+    }
+    public ItemStack input() { return stored.copy(); }
+    public int waterAmount() { return water; }
+    public int remainingTicks() { return cycle.remaining(); }
+    public boolean active() { return cycle.active(); }
+    public SluiceAutomation automation() { return automation; }
+    public void flushAutomation() { changed(); }
+    public record AutomationState(ItemStack input, int water) {}
+    public AutomationState automationState() { return new AutomationState(stored.copy(), water); }
+    public void restoreAutomation(AutomationState state) { stored = state.input().copy(); water = state.water(); }
+    public void setAutomation(ItemStack input, int water) { stored = input; this.water = water; }
+    public ItemStack insertInput(ItemStack incoming, boolean simulate) {
+        if (incoming.isEmpty() || cycle.active() || SluiceRecipes.find(level, incoming) == null
+            || (!stored.isEmpty() && !ItemStack.isSameItemSameComponents(stored, incoming))) return incoming.copy();
+        int accepted = Math.min(SluiceCycle.insertionCount(stored.getCount(), incoming.getCount()), Math.max(0, incoming.getMaxStackSize() - stored.getCount()));
+        if (!simulate && accepted > 0) {
+            if (stored.isEmpty()) stored = incoming.copyWithCount(accepted); else stored.grow(accepted);
+            changed();
+        }
+        return incoming.copyWithCount(incoming.getCount() - accepted);
+    }
+    public ItemStack extractInput(int amount, boolean simulate) {
+        if (amount <= 0 || cycle.active() || stored.isEmpty()) return ItemStack.EMPTY;
+        int accepted = Math.min(amount, stored.getCount());
+        ItemStack result = stored.copyWithCount(accepted);
+        if (!simulate) { stored.shrink(accepted); changed(); }
+        return result;
+    }
+    public int insertWater(int amount, boolean simulate) {
+        int accepted = WaterBudget.insertion(water, amount, cycle.active());
+        if (!simulate && accepted > 0) { water += accepted; changed(); }
+        return accepted;
+    }
     private boolean activate() {
         if (level == null || level.isClientSide() || !cycle.start()) return false;
         updateActive(true);
-        level.playSound(null, worldPosition, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 0.8F, 1.0F);
+        level.playSound(null, worldPosition, (hasNext() ? FoundationsMagneticraft.WATER_FLOW.get() : FoundationsMagneticraft.WATER_FLOW_END.get()), SoundSource.BLOCKS, 0.8F, 1.0F);
         changed();
         return true;
     }
@@ -64,7 +101,9 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
         }
     }
     public void tick() {
-        if (level == null || level.isClientSide() || !cycle.active()) return;
+        if (level == null || level.isClientSide()) return;
+        if (!cycle.active() && water == WaterBudget.CAPACITY && SluiceRecipes.find(level, stored) != null) { water = 0; activate(); }
+        if (!cycle.active()) return;
         SluiceCycle.Tick tick = cycle.tick();
         setChanged(); // Persist exact remaining work even when the chunk unloads mid-cycle.
         if (tick.activateNext()) {
@@ -113,6 +152,7 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (!stored.isEmpty()) tag.put("stored", stored.save(registries));
+        tag.putInt("water", water);
         tag.putInt("remaining", cycle.remaining());
         tag.putInt("chain_delay", cycle.chainDelay());
     }
@@ -120,6 +160,7 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
         super.loadAdditional(tag, registries);
         stored = ItemStack.parseOptional(registries, tag.getCompound("stored"));
         if (stored.getCount() > SluiceCycle.CAPACITY) stored.setCount(SluiceCycle.CAPACITY);
+        water = WaterBudget.restored(tag.getInt("water"));
         cycle.restore(tag.getInt("remaining"), tag.getInt("chain_delay"));
     }
     @Override public CompoundTag getUpdateTag(HolderLookup.Provider registries) { return saveWithoutMetadata(registries); }

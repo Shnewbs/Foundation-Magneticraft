@@ -1,0 +1,25 @@
+{
+  "crushing_hit": {
+    "sounds": [
+      "magneticraft:crushing_hit1",
+      "magneticraft:crushing_hit2",
+      "magneticraft:crushing_hit3"
+    ]
+  },
+  "crushing_final": {
+    "sounds": [
+      "magneticraft:crushing_final1",
+      "magneticraft:crushing_final2"
+    ]
+  },
+  "water_flow": {
+    "sounds": [
+      "magneticraft:water_flow"
+    ]
+  },
+  "water_flow_end": {
+    "sounds": [
+      "magneticraft:water_flow_end"
+    ]
+  }
+}

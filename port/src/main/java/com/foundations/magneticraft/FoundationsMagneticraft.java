@@ -32,6 +32,14 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(FoundationsMagneticraft.MOD_ID)
 public final class FoundationsMagneticraft {
     public static final String MOD_ID = "magneticraft";
+    public static final DeferredRegister<net.minecraft.sounds.SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent> CRUSHING_HIT = sound("crushing_hit");
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent> CRUSHING_FINAL = sound("crushing_final");
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent> WATER_FLOW = sound("water_flow");
+    public static final DeferredHolder<net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent> WATER_FLOW_END = sound("water_flow_end");
+    private static DeferredHolder<net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent> sound(String path) {
+        return SOUNDS.register(path, () -> net.minecraft.sounds.SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID, path)));
+    }
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredRegister<CreativeModeTab> TABS =
@@ -177,15 +185,28 @@ public final class FoundationsMagneticraft {
                             ITEMS.getEntries().forEach(item -> output.accept(item.get())))
                     .build());
 
-    public FoundationsMagneticraft(IEventBus modBus) {
+    public FoundationsMagneticraft(IEventBus modBus, net.neoforged.fml.ModContainer container) {
+        container.registerConfig(net.neoforged.fml.config.ModConfig.Type.SERVER, com.foundations.magneticraft.manual.ProcessingConfig.SPEC);
+        SOUNDS.register(modBus);
+        com.foundations.magneticraft.integration.ProcessingRecipeSync.register(modBus);
         modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->
             event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
                 BOX_ENTITY.get(), (box, side) -> new net.neoforged.neoforge.items.wrapper.InvWrapper(box)));
         modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->
             event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
                 FABRICATOR_ENTITY.get(), (box, side) -> new net.neoforged.neoforge.items.wrapper.InvWrapper(box)));
+        modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) -> {
+            event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
+                SLUICE_BOX_ENTITY.get(), (box, side) -> box.automation().items());
+            event.registerBlockEntity(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK,
+                SLUICE_BOX_ENTITY.get(), (box, side) -> box.automation().water());
+        });
         MENUS.register(modBus);
-        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> RecipeOverrides.clearAll());
+        NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> {
+            RecipeOverrides.clearAll();
+            com.foundations.magneticraft.manual.CrushingRecipes.clearCache();
+            com.foundations.magneticraft.manual.SluiceRecipes.clearCache();
+        });
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
         TABS.register(modBus);
