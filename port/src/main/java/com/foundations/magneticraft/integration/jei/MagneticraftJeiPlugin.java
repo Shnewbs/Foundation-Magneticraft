@@ -13,7 +13,6 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 
 @JeiPlugin
 public final class MagneticraftJeiPlugin implements IModPlugin {

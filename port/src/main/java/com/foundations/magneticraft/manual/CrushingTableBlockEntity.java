@@ -7,7 +7,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -68,7 +67,6 @@ public final class CrushingTableBlockEntity extends BlockEntity {
                 }
                 if (!player.getAbilities().instabuild)
                     held.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-                ItemStack particleInput = stored.copy();
                 if (stored.is(net.minecraft.world.item.Items.BLAZE_ROD) && ProcessingConfig.BLAZE_FIRE.get())
                     player.setRemainingFireTicks(Math.max(player.getRemainingFireTicks(), 100));
                 boolean finished = progress.hit(hammer.speed());

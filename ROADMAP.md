@@ -1,7 +1,7 @@
 # Foundations Magneticraft - Dual-Version Port Roadmap
 
-Updated: 2026-09-30
-Status: planning; no port implementation or release completed.
+Updated: 2026-10-05
+Status: dual-target early alpha in development. R8 processing expansion prepared; paired publication follows successful release checks. See PORT_STATUS.md for exact implementation and verification limits.
 
 ## Project direction
 
@@ -33,20 +33,24 @@ Each pair uses two GitHub Releases, with target-specific JARs, changelogs, sourc
 
 ## Target toolchains
 
-- **1.21.1:** NeoForge, Java 21, and a current compatible MDK/Gradle toolchain. Pin exact dependencies after bootstrap validation.
-- **26.3:** verify available NeoForge builds, supported Java, Gradle, mappings, APIs, and integration versions before pinning the toolchain. Loader availability has not been established in this review. If unavailable, record a blocker; do not silently substitute another Minecraft version or loader.
+- **1.21.1:** NeoForge 21.1.252, Java 21, Gradle 9.2.1, ModDevGradle 2.0.148.
+- **26.3:** NeoForge 26.3.0.39-beta, Java 25, Gradle 9.2.1, ModDevGradle 2.0.147. Target-specific capabilities, configuration, rendering and serialization are implemented separately.
 - **26.4 preparation:** isolate version-sensitive registration, serialization, networking, capabilities, menus, rendering, and worldgen code. Track official changes when available; do not invent future API requirements or claim 26.4 compatibility.
 - Prefer Java for newly rewritten platform code to simplify maintenance. Retain useful Kotlin only with a verified modern runtime/build strategy; no dependency on legacy Forgelin.
+
+## Current implemented subset
+
+Both branches currently contain 96 item/block-item registrations, 71 crafting/smelting recipes, 34 crushing recipes, 16 sluice recipes, four default ore distributions, crushing/sluice/storage/fabricator implementations, scripting support as documented, and paired release automation. The processing expansion adds sluice water-container/item/fluid compatibility, optional JEI/Jade, recipe synchronization and caching, source sounds and server configuration. Full client/server gameplay validation and the remaining electricity/heat/fluid/multiblock/logistics content are still pending. Completed source implementation does not imply an entire milestone's exit checks have passed.
 
 ## Milestones - apply to both branches
 
 ### 0.0.1a - Source audit and bootable platforms
 
-- [ ] Create both branches from the pinned baseline; protect the original source history.
+- [x] Create both branches from the pinned baseline; protect the original source history.
 - [ ] Inventory actual registered blocks, items, fluids, recipes, multiblocks, tools, computers, transport, generators, GUIs, assets, and integrations.
 - [ ] Build a parity manifest: source ID/path, behavior, dependencies, target implementation, tests, and status for each target.
 - [ ] Separate active registered content from abandoned `ignore/test` code; do not count unused prototypes as required gameplay.
-- [ ] Replace legacy Gradle/Forge setup and metadata on both targets.
+- [x] Replace legacy Gradle/Forge setup and metadata on both targets.
 - [ ] Establish registration, configuration, logging, client/server separation, and data generation.
 - [ ] Build both JARs and start each client and dedicated server.
 
@@ -58,7 +62,7 @@ Each pair uses two GitHub Releases, with target-specific JARs, changelogs, sourc
 - [ ] Convert metadata variants into explicit modern registrations/states.
 - [ ] Replace OreDictionary use with tags.
 - [ ] Port crafting, loot, mining requirements, worldgen, and localization.
-- [ ] Implement crushing table, sieve, sluice box, and kiln where verified in the active inventory.
+- [ ] Implement crushing table, sluice box, storage box and fabricator; include sieve/kiln only if verified in the active registered inventory.
 - [ ] Validate survival progression, recipe reloads, drops, placement orientation, and item persistence.
 
 **Exit:** early progression functions on both targets with correct assets and recipes.
