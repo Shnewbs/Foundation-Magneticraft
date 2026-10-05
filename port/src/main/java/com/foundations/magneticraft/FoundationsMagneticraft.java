@@ -186,7 +186,7 @@ public final class FoundationsMagneticraft {
                     .build());
 
     public FoundationsMagneticraft(IEventBus modBus, net.neoforged.fml.ModContainer container) {
-        container.registerConfig(net.neoforged.fml.config.ModConfig.Type.SERVER, com.foundations.magneticraft.manual.ProcessingConfig.SPEC);
+        container.registerConfig(net.neoforged.fml.config.ModConfig.Type.SYNCED, com.foundations.magneticraft.manual.ProcessingConfig.SPEC);
         SOUNDS.register(modBus);
         com.foundations.magneticraft.integration.ProcessingRecipeSync.register(modBus);
         modBus.addListener((net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent event) ->

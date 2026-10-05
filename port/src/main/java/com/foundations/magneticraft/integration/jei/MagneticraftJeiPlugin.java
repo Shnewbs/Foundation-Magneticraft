@@ -35,8 +35,8 @@ public final class MagneticraftJeiPlugin implements IModPlugin {
         registration.addItemStackInfo(new net.minecraft.world.item.ItemStack(FoundationsMagneticraft.SLUICE_BOX.get()), net.minecraft.network.chat.Component.translatable("jei.magneticraft.sluice_help"));
     }
     @Override public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new net.minecraft.world.item.ItemStack(FoundationsMagneticraft.CRUSHING_TABLE.get()), CRUSHING);
-        registration.addRecipeCatalyst(new net.minecraft.world.item.ItemStack(FoundationsMagneticraft.SLUICE_BOX.get()), SLUICE);
+        registration.addCraftingStation(CRUSHING, FoundationsMagneticraft.CRUSHING_TABLE.get());
+        registration.addCraftingStation(SLUICE, FoundationsMagneticraft.SLUICE_BOX.get());
     }
     @Override public void onRuntimeAvailable(IJeiRuntime runtime) {
         ProcessingCatalog.setClientListener(next -> {
