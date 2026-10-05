@@ -83,10 +83,12 @@
         "crushing_table",
         "sluice_box (water bucket; two blocks; independent source yields; stepped model fill)",
         "box (27 slots; persistent inventory; vanilla chest menu; automation capability)",
-        "fabricator (nine ghost slots; nine-slot buffer; neighbor inventories; server craft and remainder handling)"
+        "fabricator (nine ghost slots; nine-slot buffer; neighbor inventories; server craft and remainder handling)",
+        "sluice item/fluid capabilities; exact water-container drain; 1000 mB persisted automatic water buffer",
+        "source processing sounds; configurable blaze fire; server hit particles"
       ],
       "pending": [
-        "sluice fluid-container compatibility and client/world/server gameplay validation",
+        "sluice container/automation/client/world/server gameplay validation",
         "fabricator client/server gameplay and cross-mod inventory validation"
       ]
     },
@@ -172,5 +174,10 @@
   "assets": {
     "textures": 374,
     "models": 271
+  },
+  "integrations": {
+    "jei": "optional categories and bounded server recipe sync; API compiled; runtime pending",
+    "jade": "optional server machine status providers; API compiled; runtime pending",
+    "kubejs_crafttweaker": "1.21.1 native adapters; 26.3 shared API/datapacks"
   }
 }

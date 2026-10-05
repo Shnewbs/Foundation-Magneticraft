@@ -164,6 +164,10 @@ def validate(files, target):
     cube = resource("assets/magneticraft/models/block/fabricator.json")
     assert cube["textures"]["up"] == "magneticraft:block/fabricator_top"
     assert cube["textures"]["down"] == "magneticraft:block/fabricator_bottom"
+    sounds = resource("assets/magneticraft/sounds.json")
+    assert {"crushing_hit", "crushing_final", "water_flow", "water_flow_end"} <= sounds.keys()
+    assert len(sounds["crushing_hit"]["sounds"]) == 3
+    assert len(sounds["crushing_final"]["sounds"]) == 2
     assert "beforeScriptsLoaded" in files.get("port/src/main/java/com/foundations/magneticraft/integration/kubejs/MagneticraftKubeJSPlugin.java", "") or modern
     print(f"{target}: 96 registrations, 71 recipes, mining/loot/models/worldgen checks passed")
 
