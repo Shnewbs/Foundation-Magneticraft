@@ -20,29 +20,31 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-/** Server-only datapack recipes. Resource identity invalidates the cache on /reload.
+/** Server-only datapack recipes. Resource-manager identity invalidates the cache on /reload; hot lookups never scan datapacks.
  * Kept outside the vanilla recipe book until machine recipe serializers are migrated. */
 public final class SluiceRecipes {
     private SluiceRecipes() {}
     public record Output(ItemStack stack, float chance) {}
-    public record Recipe(String ingredient, List<Output> outputs) {
+    public record Recipe(String id, String ingredient, List<Output> outputs) {
         public boolean matches(ItemStack stack) {
             return ingredient.startsWith("#")
                 ? stack.is(TagKey.create(Registries.ITEM, Identifier.parse(ingredient.substring(1))))
                 : BuiltInRegistries.ITEM.getKey(stack.getItem()).toString().equals(ingredient);
         }
     }
-    private record Snapshot(Map<Identifier, Resource> resources, long scriptRevision, List<Recipe> recipes) {}
-    private static final Map<ResourceManager, Snapshot> CACHE = new WeakHashMap<>();
+    private static final com.foundations.magneticraft.integration.GenerationCache<ResourceManager, List<Recipe>> CACHE = new com.foundations.magneticraft.integration.GenerationCache<>();
+    public static void clearCache() { CACHE.clear(); }
 
     public static Recipe find(Level level, ItemStack input) {
-        if (input.isEmpty() || level.getServer() == null) return null;
+        if (input.isEmpty()) return null;
+        for (Recipe recipe : all(level)) if (recipe.matches(input)) return recipe;
+        return null;
+    }
+    public static List<Recipe> all(Level level) {
+        if (level.getServer() == null) return List.of();
         ResourceManager manager = level.getServer().getResourceManager();
-        Map<Identifier, Resource> resources = manager.listResources(
-            "magneticraft/sluice", id -> id.getPath().endsWith(".json"));
-        long scriptRevision = RecipeOverrides.revision();
-        Snapshot snapshot = CACHE.get(manager);
-        if (snapshot == null || !snapshot.resources().equals(resources) || snapshot.scriptRevision() != scriptRevision) {
+        return CACHE.get(manager, RecipeOverrides.revision(), () -> {
+            var resources = manager.listResources("magneticraft/sluice", id -> id.getPath().endsWith(".json"));
             List<Recipe> recipes = new ArrayList<>();
             ScriptRecipeSources.merge(resources, "sluice").entrySet().stream().sorted(Comparator.comparing(e -> e.getKey().toString())).forEach(entry -> {
                 try {
@@ -63,18 +65,15 @@ public final class SluiceRecipes {
                             throw new IllegalArgumentException("Invalid output count or chance");
                         outputs.add(new Output(stack, chance));
                     }
-                    if (outputs.isEmpty()) throw new IllegalArgumentException("No outputs");
-                    recipes.add(new Recipe(ingredient, List.copyOf(outputs)));
+                    if (outputs.isEmpty() || outputs.size() > 64) throw new IllegalArgumentException("No outputs");
+                    recipes.add(new Recipe(entry.getKey(), ingredient, List.copyOf(outputs)));
                 } catch (Exception error) {
                     LogUtils.getLogger().warn("Ignoring invalid sluice recipe {}", entry.getKey(), error);
                 }
             });
             // Specific item recipes override broad compatibility tags.
             recipes.sort(Comparator.comparing(recipe -> recipe.ingredient().startsWith("#")));
-            snapshot = new Snapshot(resources, scriptRevision, List.copyOf(recipes));
-            CACHE.put(manager, snapshot);
-        }
-        for (Recipe recipe : snapshot.recipes()) if (recipe.matches(input)) return recipe;
-        return null;
+            return List.copyOf(recipes);
+        });
     }
 }

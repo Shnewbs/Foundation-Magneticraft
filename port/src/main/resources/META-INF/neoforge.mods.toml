@@ -5,7 +5,7 @@ version="${mod_version}"
 displayName="Foundations Magneticraft"
 authors="Magneticraft Team; Foundations / Shnewbs"
 displayURL="https://github.com/Shnewbs/Foundation-Magneticraft"
-description="Concurrent modern port of Magneticraft: materials, ores, crushing table, sluice box and storage box. Early alpha."
+description="Concurrent modern port of Magneticraft: materials, ores, crushing table, sluice box and storage box, fabricator, optional JEI/Jade and sluice automation. Early alpha."
 [[dependencies.magneticraft]]
 modId="neoforge"
 type="required"
@@ -17,4 +17,18 @@ modId="minecraft"
 type="required"
 versionRange="${minecraft_version_range}"
 ordering="NONE"
+side="BOTH"
+
+[[dependencies.magneticraft]]
+modId="jei"
+type="optional"
+versionRange="[31.9,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.magneticraft]]
+modId="jade"
+type="optional"
+versionRange="[26.3.5,)"
+ordering="AFTER"
 side="BOTH"

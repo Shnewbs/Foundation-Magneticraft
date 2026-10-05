@@ -25,6 +25,8 @@ public final class CrushingTableBlockEntity extends BlockEntity {
     public CrushingTableBlockEntity(BlockPos pos, BlockState state) {
         super(FoundationsMagneticraft.CRUSHING_TABLE_ENTITY.get(), pos, state);
     }
+    public ItemStack input() { return stored.copy(); }
+    public int damage() { return progress.damage(); }
     private record Hammer(int miningLevel, int speed) {}
     private static Hammer hammer(ItemStack held) {
         return switch (BuiltInRegistries.ITEM.getKey(held.getItem()).toString()) {
@@ -66,13 +68,20 @@ public final class CrushingTableBlockEntity extends BlockEntity {
                 }
                 if (!player.getAbilities().instabuild)
                     held.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                ItemStack particleInput = stored.copy();
+                if (stored.is(net.minecraft.world.item.Items.BLAZE_ROD) && ProcessingConfig.BLAZE_FIRE.get())
+                    player.setRemainingFireTicks(Math.max(player.getRemainingFireTicks(), 100));
                 boolean finished = progress.hit(hammer.speed());
                 if (finished) {
                     lastInput = stored.copyWithCount(1);
                     stored = recipe.output().copy();
                 }
-                level.playSound(null, worldPosition, finished ? SoundEvents.STONE_BREAK : SoundEvents.STONE_HIT,
+                level.playSound(null, worldPosition, finished ? FoundationsMagneticraft.CRUSHING_FINAL.get() : FoundationsMagneticraft.CRUSHING_HIT.get(),
                         SoundSource.BLOCKS, 0.7F, 0.8F);
+                if (level instanceof net.minecraft.server.level.ServerLevel server) {
+                    server.sendParticles(net.minecraft.core.particles.ParticleTypes.CRIT, worldPosition.getX() + 0.5,
+                        worldPosition.getY() + 0.95, worldPosition.getZ() + 0.5, 6, 0.15, 0.1, 0.15, 0.05);
+                }
                 changed();
             } else {
                 // Inventory.add mutates the copy, including partial transfers. Keep only the remainder.
