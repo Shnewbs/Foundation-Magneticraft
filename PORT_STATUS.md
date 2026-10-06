@@ -1,6 +1,6 @@
 # Port status: 26.3
 
-Version: 0.0.1a.R8 (early alpha)
+Version: 0.0.1a.R9 (early alpha)
 
 Loader: NeoForge 26.3.0.39-beta.
 
@@ -22,3 +22,5 @@ Known limits: live client/world/dedicated-server, multiplayer, fluid-container/p
 
 
 R9 addition: passive sluicing accepts a loaded water-tag source (including a waterlogged source) immediately behind or on either horizontal side of the main intake, at the same block height. Outlet-side, flowing non-source, above and below water do not qualify. The source is never drained or replaced. Source-fed batches retain the 80-tick duration and yields and preserve any pipe buffer. Removing the source pauses the remaining work and downstream delay; replacing it resumes, or a water container can finish a paused batch. Three adjacent positions are checked once per second, staggered by position, and immediately after loading. The source supplies continuous animated vanilla flowing-water geometry through both halves even when empty; no world water is spawned at the outlet. Block state updates occur only when flow/processing state changes. Live visual, multiplayer and automation gameplay verification remains pending.
+
+Both target R9 implementation builds passed compilation, resource/model checks and the new source preference, buffer fallback and pause/resume regression checks. Live in-game validation remains pending.
