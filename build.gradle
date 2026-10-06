@@ -91,3 +91,10 @@ tasks.register('verifyRecipeCatalog', JavaExec) {
     mainClass = 'com.foundations.magneticraft.integration.ProcessingCatalogTest'
 }
 tasks.named('check') { dependsOn tasks.named('verifyRecipeCatalog') }
+
+tasks.register('verifySluiceWaterSupply', JavaExec) {
+    dependsOn tasks.named('crushingChecksClasses')
+    classpath = sourceSets.crushingChecks.runtimeClasspath
+    mainClass = 'com.foundations.magneticraft.manual.SluiceWaterSupplyTest'
+}
+tasks.named('check') { dependsOn tasks.named('verifySluiceWaterSupply') }

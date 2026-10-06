@@ -14,7 +14,7 @@
       "when": {
         "center": "true",
         "facing": "south",
-        "active": "true"
+        "flowing": "true"
       },
       "apply": {
         "model": "magneticraft:block/sluice_box_water",
@@ -145,7 +145,7 @@
       "when": {
         "center": "true",
         "facing": "west",
-        "active": "true"
+        "flowing": "true"
       },
       "apply": {
         "model": "magneticraft:block/sluice_box_water",
@@ -276,7 +276,7 @@
       "when": {
         "center": "true",
         "facing": "north",
-        "active": "true"
+        "flowing": "true"
       },
       "apply": {
         "model": "magneticraft:block/sluice_box_water",
@@ -407,7 +407,7 @@
       "when": {
         "center": "true",
         "facing": "east",
-        "active": "true"
+        "flowing": "true"
       },
       "apply": {
         "model": "magneticraft:block/sluice_box_water",

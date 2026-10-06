@@ -142,6 +142,10 @@ def validate(files, target):
         assert len(resource(f"assets/magneticraft/models/block/sluice_box_gravel_{fill}.json")["elements"]) == 6
     water = resource("assets/magneticraft/models/block/sluice_box_water.json")
     assert len(water["elements"]) == 22
+    overlays = [p for p in state["multipart"] if p["apply"]["model"].endswith("sluice_box_water")]
+    assert len(overlays) == 4 and all(p["when"]["flowing"] == "true" for p in overlays)
+    texture = water["textures"]["water"]
+    assert (texture["sprite"] if isinstance(texture, dict) else texture) == "minecraft:block/water_flow"
     if modern:
         assert all(t["force_translucent"] for t in water["textures"].values())
     else:
