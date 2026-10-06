@@ -15,6 +15,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class SluiceBoxBlockEntity extends BlockEntity {
     private int water;
+    private boolean passiveCycle;
+    private boolean sourceWater;
+    private boolean sourceChecked;
     private final SluiceAutomation automation = new SluiceAutomation(this);
     private ItemStack stored = ItemStack.EMPTY;
     private final SluiceCycle cycle = new SluiceCycle();
@@ -23,8 +26,9 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
     }
     public void interact(Player player, ItemStack held) {
         if (level == null || level.isClientSide()) return;
-        if (!cycle.active() && SluiceWaterContainer.consume(player)) {
-            activate();
+        if ((!cycle.active() || (passiveCycle && !sourceWater)) && SluiceWaterContainer.consume(player)) {
+            if (cycle.active()) { passiveCycle = false; updateActive(true); changed(); }
+            else activate();
         } else if (!cycle.active() && held.isEmpty()) {
             ItemStack remainder = stored.copy();
             player.getInventory().add(remainder);
@@ -79,8 +83,22 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
         if (!simulate && accepted > 0) { water += accepted; changed(); }
         return accepted;
     }
-    private boolean activate() {
+    private boolean hasSourceWater() {
+        var facing = getBlockState().getValue(SluiceBoxBlock.FACING);
+        // Intake back and sides at the same height. The downstream outlet is not an intake.
+        for (var direction : new net.minecraft.core.Direction[] {
+                facing.getOpposite(), facing.getClockWise(), facing.getCounterClockWise() }) {
+            BlockPos neighbor = worldPosition.relative(direction);
+            if (!level.hasChunkAt(neighbor)) continue;
+            var fluid = level.getFluidState(neighbor);
+            if (fluid.is(net.minecraft.tags.FluidTags.WATER) && fluid.isSource()) return true;
+        }
+        return false;
+    }
+    private boolean activate() { return activate(false); }
+    private boolean activate(boolean passive) {
         if (level == null || level.isClientSide() || !cycle.start()) return false;
+        passiveCycle = passive;
         updateActive(true);
         level.playSound(null, worldPosition, (hasNext() ? FoundationsMagneticraft.WATER_FLOW.get() : FoundationsMagneticraft.WATER_FLOW_END.get()), SoundSource.BLOCKS, 0.8F, 1.0F);
         changed();
@@ -88,19 +106,36 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
     }
     private void updateActive(boolean active) {
         BlockState state = getBlockState();
-        level.setBlock(worldPosition, state.setValue(SluiceBoxBlock.ACTIVE, active), Block.UPDATE_CLIENTS);
+        boolean flowing = sourceWater || (active && !passiveCycle);
+        BlockState updated = state.setValue(SluiceBoxBlock.ACTIVE, active).setValue(SluiceBoxBlock.FLOWING, flowing);
+        if (updated != state) level.setBlock(worldPosition, updated, Block.UPDATE_CLIENTS);
         BlockPos other = worldPosition.relative(state.getValue(SluiceBoxBlock.FACING));
         if (level.hasChunkAt(other)) {
             BlockState outlet = level.getBlockState(other);
             if (outlet.is(state.getBlock()) && !outlet.getValue(SluiceBoxBlock.CENTER)
-                    && outlet.getValue(SluiceBoxBlock.FACING) == state.getValue(SluiceBoxBlock.FACING))
-                level.setBlock(other, outlet.setValue(SluiceBoxBlock.ACTIVE, active), Block.UPDATE_CLIENTS);
+                    && outlet.getValue(SluiceBoxBlock.FACING) == state.getValue(SluiceBoxBlock.FACING)) {
+                BlockState next = outlet.setValue(SluiceBoxBlock.ACTIVE, active).setValue(SluiceBoxBlock.FLOWING, flowing);
+                if (next != outlet) level.setBlock(other, next, Block.UPDATE_CLIENTS);
+            }
         }
     }
     public void tick() {
         if (level == null || level.isClientSide()) return;
-        if (!cycle.active() && water == WaterBudget.CAPACITY && SluiceRecipes.find(level, stored) != null) { water = 0; activate(); }
-        if (!cycle.active()) return;
+        // Stagger checks across boxes: three loaded neighbor reads at most once per second.
+        if (!sourceChecked || Math.floorMod(level.getGameTime() + worldPosition.asLong(), 20) == 0) {
+            sourceWater = hasSourceWater();
+            sourceChecked = true;
+            updateActive(cycle.active());
+        }
+        if (!cycle.active() && !stored.isEmpty()) {
+            SluiceWaterSupply.Start supply = SluiceWaterSupply.start(
+                SluiceRecipes.find(level, stored) != null, sourceWater, water);
+            if (supply != SluiceWaterSupply.Start.NONE) {
+                if (supply == SluiceWaterSupply.Start.BUFFER) water = 0;
+                activate(supply == SluiceWaterSupply.Start.SOURCE);
+            }
+        }
+        if (!cycle.active() || !SluiceWaterSupply.canAdvance(passiveCycle, sourceWater)) return;
         SluiceCycle.Tick tick = cycle.tick();
         setChanged(); // Persist exact remaining work even when the chunk unloads mid-cycle.
         if (tick.activateNext()) {
@@ -121,6 +156,7 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
                         if (level.random.nextFloat() < output.chance())
                             Block.popResource(level, outlet, output.stack().copy());
             } // A removed recipe leaves its input recoverable.
+            passiveCycle = false;
             updateActive(false);
             changed();
         }
@@ -149,6 +185,7 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (!stored.isEmpty()) tag.put("stored", stored.save(registries));
+        tag.putBoolean("passive_cycle", passiveCycle);
         tag.putInt("water", water);
         tag.putInt("remaining", cycle.remaining());
         tag.putInt("chain_delay", cycle.chainDelay());
@@ -157,6 +194,8 @@ public final class SluiceBoxBlockEntity extends BlockEntity {
         super.loadAdditional(tag, registries);
         stored = ItemStack.parseOptional(registries, tag.getCompound("stored"));
         if (stored.getCount() > SluiceCycle.CAPACITY) stored.setCount(SluiceCycle.CAPACITY);
+        passiveCycle = tag.getBoolean("passive_cycle");
+        sourceChecked = false;
         water = WaterBudget.restored(tag.getInt("water"));
         cycle.restore(tag.getInt("remaining"), tag.getInt("chain_delay"));
     }

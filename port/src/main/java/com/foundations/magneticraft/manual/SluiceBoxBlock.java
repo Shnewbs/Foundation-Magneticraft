@@ -35,14 +35,15 @@ public final class SluiceBoxBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty CENTER = BooleanProperty.create("center");
     public static final IntegerProperty FILL = IntegerProperty.create("fill", 0, 10);
+    public static final BooleanProperty FLOWING = BooleanProperty.create("flowing");
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
     public SluiceBoxBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.SOUTH)
-            .setValue(CENTER, true).setValue(ACTIVE, false).setValue(FILL, 0));
+            .setValue(CENTER, true).setValue(ACTIVE, false).setValue(FLOWING, false).setValue(FILL, 0));
     }
     @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, CENTER, ACTIVE, FILL);
+        builder.add(FACING, CENTER, ACTIVE, FLOWING, FILL);
     }
     public static BlockPos mainPos(BlockState state, BlockPos pos) {
         return state.getValue(CENTER) ? pos : pos.relative(state.getValue(FACING).getOpposite());
